@@ -10,10 +10,9 @@
 
 @interface UILabel (iCan)
 
-
 /**
  创建一个UILabel
-
+ 
  @param frame 坐标大小
  @param text 显示的文字
  @param font 字体

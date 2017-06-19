@@ -58,7 +58,7 @@
     if (titleColor != nil) {
         [btn setTitleColor:titleColor forState:UIControlStateNormal];
     }
-
+    
     if (borderColor != nil) {
         btn.layer.borderColor = borderColor.CGColor;
     }
@@ -74,7 +74,7 @@
 
 /**
  创建一个带圆角被裁剪过的文字按钮，圆角位置可自定义
-
+ 
  @param frame <#frame description#>
  @param title <#title description#>
  @param titleColor <#titleColor description#>
@@ -107,7 +107,7 @@
 
 /**
  创建一个只有图片的按钮
-
+ 
  @param frame 坐标
  @param image 默认图片
  @param highlightedImage 按下高亮图片

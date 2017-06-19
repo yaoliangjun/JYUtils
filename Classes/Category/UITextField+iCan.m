@@ -33,7 +33,7 @@
 
 /**
  创建一个可以带边框的UITextField
-
+ 
  @param frame 坐标
  @param placeholder placeholder
  @param font 字体
@@ -60,7 +60,7 @@
 
 /**
  创建一个可以带边框的UITextField，可以设置placeholderColor
-
+ 
  @param frame 坐标
  @param placeholder placeholder
  @param placeholderColor placeholderColor

@@ -10,6 +10,7 @@
 
 @implementation NSString (iCan)
 
+
 /**
  *  判断字符串是否为Nil或者空
  *
@@ -19,10 +20,16 @@
  */
 + (BOOL)isNilOrEmpty:(NSString *)str
 {
-    if (str && ![str isEqualToString:@""] && str != nil && str != (id)[NSNull null] && ![str isEqualToString:@"<null>"] && ![str isEqualToString:@"(null)"]) {
+    if (str &&
+        str != nil &&
+        str != (id)[NSNull null] &&
+        ![str isEqualToString:@""] &&
+        ![str isEqualToString:@"<null>"] &&
+        ![str isEqualToString:@"(null)"] &&
+        ![str isEqualToString:@"null"]) {
         return NO;
     }
-        
+    
     return YES;
 }
 
@@ -42,7 +49,7 @@
 
 /**
  手机号是否合法
-
+ 
  @return <#return value description#>
  */
 - (BOOL)isValidPhoneNumber
@@ -50,7 +57,5 @@
     NSPredicate *postcodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^[1][3,4,5,7,8][0-9]{9}$"];
     return [postcodeTest evaluateWithObject:self];
 }
-
-
 
 @end
