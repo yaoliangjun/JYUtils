@@ -20,7 +20,7 @@
 + (NSString *)dateWithMillisecond:(NSString *)millisecond formatter:(NSString *)formatter
 {
     if (!millisecond || !formatter) {
-        return @"";
+        return@"";
     }
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:([millisecond doubleValue] / 1000)];
@@ -41,7 +41,7 @@
 + (NSString *)millisecondWithDateString:(NSString *)dateString formatter:(NSString *)formatter
 {
     if (!dateString || !formatter) {
-        return @"";
+        return@"";
     }
     
     NSDateFormatter *mFormatter = [[NSDateFormatter alloc] init];
@@ -191,5 +191,4 @@
     [dateFormatter setDateFormat:monthFormatter]; // 如果需要获取数字的月份把"MMM"改成"MM"即可
     return [[dateFormatter stringFromDate:date] uppercaseString];
 }
-
 @end
