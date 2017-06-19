@@ -3,7 +3,7 @@
 //  Pods
 //
 //  Created by Jerry Yao on 2017/6/19.
-//
+//  公共头文件
 //
 
 #import "NSData+iCan.h"
@@ -16,5 +16,5 @@
 #import "UITextField+iCan.h"
 #import "UIView+Yao.h"
 #import "UIViewController+iCan.h"
-#import "Bundle.h"
+#import "NSBundle+iCan.h"
 #import "UIAlertController+iCan.h"

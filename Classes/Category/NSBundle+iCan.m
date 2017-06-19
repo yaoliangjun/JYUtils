@@ -1,16 +1,15 @@
 //
-//  Bundle.h
-//  Pods
+//  NSBundle+iCan.m
+//  iCan
 //
-//  Created by Jerry Yao on 17/6/19.
-//  Copyright © 2016 LinkedTech. All rights reserved.
+//  Created by Jerry Yao on 2017/6/19.
+//  Copyright © 2017年 LinkedTech. All rights reserved.
 //
 
-#import "Bundle.h"
-
+#import "NSBundle+iCan.h"
 #import <objc/runtime.h>
 
-static const char _bundle=0;
+static const char _bundle = 0;
 
 @interface BundleEx : NSBundle
 
@@ -26,15 +25,15 @@ static const char _bundle=0;
 
 @end
 
-@implementation NSBundle (Language)
+@implementation NSBundle (iCan)
 
 + (void)setLanguage:(NSString *)language
 {
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^
-                  {
-                      object_setClass([NSBundle mainBundle],[BundleEx class]);
-                  });
+    dispatch_once(&onceToken, ^{
+        object_setClass([NSBundle mainBundle], [BundleEx class]);
+    });
+    
     objc_setAssociatedObject([NSBundle mainBundle], &_bundle, language ? [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:language ofType:@"lproj"]] : nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
