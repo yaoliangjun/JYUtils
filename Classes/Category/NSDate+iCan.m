@@ -7,6 +7,7 @@
 //
 
 #import "NSDate+iCan.h"
+#import "NSString+iCan.h"
 
 @implementation NSDate (iCan)
 

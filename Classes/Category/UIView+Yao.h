@@ -5,8 +5,6 @@
 //  Copyright (c) 2015年 Jerry Yao. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface UIView (Yao)
 
 @property (nonatomic, assign) CGFloat   x;

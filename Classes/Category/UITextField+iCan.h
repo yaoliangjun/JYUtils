@@ -6,8 +6,6 @@
 //  Copyright © 2017年 LinkedTech. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface UITextField (iCan)
 
 /**

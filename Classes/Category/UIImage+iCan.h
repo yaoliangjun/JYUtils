@@ -6,6 +6,7 @@
 //  Copyright © 2017年 LinkedTech. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 @interface UIImage (iCan)

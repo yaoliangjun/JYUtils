@@ -12,27 +12,27 @@
 
 /**
  显示一个AlertView,两秒钟后消失
-
+ 
  @param title 显示的标题
  @param message 显示的内容
  */
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message
 {
     UIAlertController *alert = [UIAlertController
-                                 alertControllerWithTitle:title
-                                 message:message
-                                 preferredStyle:UIAlertControllerStyleAlert];
+                                alertControllerWithTitle:title
+                                message:message
+                                preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *yesButton = [UIAlertAction
-                                actionWithTitle:NSLocalizedString(@"Ok", nil)
-                                style:UIAlertActionStyleDefault
-                                handler:^(UIAlertAction * action) {
-                                }];
-    [alert addAction:yesButton];
+    UIAlertAction *positiveAction = [UIAlertAction
+                                     actionWithTitle:NSLocalizedString(@"Ok", nil)
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action) {
+                                     }];
+    [alert addAction:positiveAction];
     [self presentViewController:alert animated:YES completion:nil];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [alert dismissViewControllerAnimated:yesButton completion:nil];
+        [alert dismissViewControllerAnimated:positiveAction completion:nil];
     });
 }
 
@@ -51,17 +51,17 @@
                                  message:message
                                  preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* yesButton = [UIAlertAction
-                                actionWithTitle:NSLocalizedString(@"Ok", nil)
-                                style:UIAlertActionStyleDefault
-                                handler:^(UIAlertAction * action) {
-                                    
-                                    if (isReturn) {
-                                        [self.navigationController popViewControllerAnimated:YES];
-                                    }
-                                    
-                                }];
-    [alert addAction:yesButton];
+    UIAlertAction *positiveAction = [UIAlertAction
+                                     actionWithTitle:NSLocalizedString(@"Ok", nil)
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action) {
+                                         
+                                         if (isReturn) {
+                                             [self.navigationController popViewControllerAnimated:YES];
+                                         }
+                                         
+                                     }];
+    [alert addAction:positiveAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
 

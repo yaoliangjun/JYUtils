@@ -6,6 +6,7 @@
 //  Copyright © 2017年 LinkedTech. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 @interface UIButton (iCan)
@@ -25,7 +26,7 @@
 
 /**
  创建一个可以带圆角的文字按钮
-
+ 
  @param frame <#frame description#>
  @param title <#title description#>
  @param titleColor <#titleColor description#>
