@@ -149,7 +149,7 @@
  */
 + (NSString *)currentDateStringWithFormatter:(NSString *)formatter
 {
-    if ([NSString isNilOrEmpty:formatter]) {
+    if (!formatter) {
         return @"";
     }
     
