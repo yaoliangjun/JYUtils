@@ -19,7 +19,7 @@
  */
 + (NSString *)dateWithMillisecond:(NSString *)millisecond formatter:(NSString *)formatter
 {
-    if ([NSString isNilOrEmpty:millisecond] || [NSString isNilOrEmpty:formatter]) {
+    if (!millisecond || !formatter) {
         return @"";
     }
     
@@ -40,7 +40,7 @@
  */
 + (NSString *)millisecondWithDateString:(NSString *)dateString formatter:(NSString *)formatter
 {
-    if ([NSString isNilOrEmpty:dateString] || [NSString isNilOrEmpty:formatter]) {
+    if (!dateString || !formatter) {
         return @"";
     }
     
@@ -60,7 +60,7 @@
  */
 + (NSString *)millisecondWithDate:(NSDate *)date formatter:(NSString *)formatter
 {
-    if (!date || [NSString isNilOrEmpty:formatter]) {
+    if (!date || !formatter) {
         return @"";
     }
     
@@ -85,7 +85,7 @@
  */
 + (NSString *)dateStringWithString:(NSString *)dateString formatter:(NSString *)formatter
 {
-    if ([NSString isNilOrEmpty:dateString] || [NSString isNilOrEmpty:formatter]) {
+    if (!dateString || !formatter) {
         return @"";
     }
     
@@ -106,7 +106,7 @@
  */
 + (NSDate *)dateWithString:(NSString *)dateString formatter:(NSString *)formatter
 {
-    if ([NSString isNilOrEmpty:dateString] || [NSString isNilOrEmpty:formatter]) {
+    if (!dateString || !formatter) {
         return [NSDate date];
     }
     
@@ -132,7 +132,7 @@
  */
 + (NSString *)dateStringWithDate:(NSDate *)date formatter:(NSString *)formatter
 {
-    if (!date || [NSString isNilOrEmpty:formatter]) {
+    if (!date || !formatter) {
         return @"";
     }
     
@@ -149,7 +149,7 @@
  */
 + (NSString *)currentDateStringWithFormatter:(NSString *)formatter
 {
-    if ([NSString isNilOrEmpty:formatter]) {
+    if (!formatter) {
         return @"";
     }
     
