@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "JYUtils"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "JYUtils是一个快速开发工具包"
 
   # This description is used to generate tags and improve search results.
@@ -93,7 +93,7 @@ Pod::Spec.new do |s|
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
-
+  s.default_subspec = 'Category'
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
