@@ -1,15 +1,15 @@
 //
-//  NSString+iCan.h
-//  iCan
+//  NSString+Extension.h
+//  JYUtils
 //
 //  Created by Jerry Yao on 17/3/16.
-//  Copyright © 2017年 LinkedTech. All rights reserved.
+//  Copyright © 2017年 Jerry Yao. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface NSString (iCan)
+@interface NSString (Extension)
 
 /**
  *  判断字符串是否为Nil或者空

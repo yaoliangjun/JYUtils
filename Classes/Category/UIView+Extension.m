@@ -1,13 +1,14 @@
 //
-//  UIView+Yao.m
+//  UIView+Extension.m
+//  JYUtils
 //
 //  Created by Jerry.Yao on 15-11-20.
 //  Copyright (c) 2015年 Jerry Yao. All rights reserved.
 //
 
-#import "UIView+Yao.h"
+#import "UIView+Extension.h"
 
-@implementation UIView (Yao)
+@implementation UIView (Extension)
 
 @dynamic x;
 @dynamic y;

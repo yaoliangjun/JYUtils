@@ -1,14 +1,14 @@
 //
-//  UIAlertController+iCan.m
-//  iCan
+//  UIAlertController+Extension.m
+//  JYUtils
 //
 //  Created by Jerry Yao on 2017/6/2.
-//  Copyright © 2017年 LinkedTech. All rights reserved.
+//  Copyright © 2017年 Jerry Yao. All rights reserved.
 //
 
-#import "UIAlertController+iCan.h"
+#import "UIAlertController+Extension.h"
 
-@implementation UIAlertController (iCan)
+@implementation UIAlertController (Extension)
 
 /**
  UIAlertController封装(确定、取消两个按钮)

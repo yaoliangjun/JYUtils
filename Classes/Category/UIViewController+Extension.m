@@ -1,14 +1,14 @@
 //
-//  UIViewController+iCan.m
-//  iCan
+//  UIViewController+Extension.m
+//  JYUtils
 //
 //  Created by Jerry Yao on 17/3/17.
-//  Copyright © 2017年 LinkedTech. All rights reserved.
+//  Copyright © 2017年 Jerry Yao. All rights reserved.
 //
 
-#import "UIViewController+iCan.h"
+#import "UIViewController+Extension.h"
 
-@implementation UIViewController (iCan)
+@implementation UIViewController (Extension)
 
 /**
  显示一个AlertView,两秒钟后消失

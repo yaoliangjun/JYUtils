@@ -1,14 +1,14 @@
 //
-//  UILabel+iCan.h
-//  iCan
+//  UILabel+Extension.h
+//  JYUtils
 //
 //  Created by Jerry Yao on 17/3/8.
-//  Copyright © 2017年 LinkedTech. All rights reserved.
+//  Copyright © 2017年 Jerry Yao. All rights reserved.
 //  UILabel创建公用方法
 
 #import <UIKit/UIKit.h>
 
-@interface UILabel (iCan)
+@interface UILabel (Extension)
 
 /**
  创建一个UILabel

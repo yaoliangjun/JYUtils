@@ -1,14 +1,14 @@
 //
-//  NSDate+iCan.m
-//  iCan
+//  NSDate+Extension.m
+//  JYUtils
 //
 //  Created by Jerry Yao on 17/3/16.
-//  Copyright © 2017年 LinkedTech. All rights reserved.
+//  Copyright © 2017年 Jerry Yao. All rights reserved.
 //
 
-#import "NSDate+iCan.h"
+#import "NSDate+Extension.h"
 
-@implementation NSDate (iCan)
+@implementation NSDate (Extension)
 
 /**
  毫秒转成指定格式的时间字符串

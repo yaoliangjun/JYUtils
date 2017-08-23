@@ -1,12 +1,12 @@
 //
-//  UITextField+iCan.h
-//  iCan
+//  UITextField+Extension.h
+//  JYUtils
 //
 //  Created by Jerry Yao on 17/3/11.
-//  Copyright © 2017年 LinkedTech. All rights reserved.
+//  Copyright © 2017年 Jerry Yao. All rights reserved.
 //
 
-@interface UITextField (iCan)
+@interface UITextField (Extension)
 
 /**
  创建一个不带边框的UITextField

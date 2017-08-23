@@ -1,14 +1,14 @@
 //
-//  UIButton+iCan.m
-//  iCan
+//  UIButton+Extension.m
+//  JYUtils
 //
 //  Created by Jerry Yao on 17/3/9.
-//  Copyright © 2017年 LinkedTech. All rights reserved.
+//  Copyright © 2017年 Jerry Yao. All rights reserved.
 //
 
-#import "UIButton+iCan.h"
+#import "UIButton+Extension.h"
 
-@implementation UIButton (iCan)
+@implementation UIButton (Extension)
 
 /**
  创建一个不带圆角的文字按钮

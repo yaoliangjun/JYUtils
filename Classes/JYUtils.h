@@ -1,20 +1,20 @@
 //
 //  JYUtils.h
-//  Pods
+//  JYUtils
 //
 //  Created by Jerry Yao on 2017/6/19.
 //  公共头文件
 //
 
-#import "NSData+iCan.h"
-#import "NSDate+iCan.h"
-#import "NSObject+iCan.h"
-#import "NSString+iCan.h"
-#import "UIButton+iCan.h"
-#import "UIImage+iCan.h"
-#import "UILabel+iCan.h"
-#import "UITextField+iCan.h"
-#import "UIView+Yao.h"
-#import "UIViewController+iCan.h"
-#import "NSBundle+iCan.h"
-#import "UIAlertController+iCan.h"
+#import "NSData+Extension.h"
+#import "NSDate+Extension.h"
+#import "NSObject+Extension.h"
+#import "NSString+Extension.h"
+#import "UIButton+Extension.h"
+#import "UIImage+Extension.h"
+#import "UILabel+Extension.h"
+#import "UITextField+Extension.h"
+#import "UIView+Extension.h"
+#import "UIViewController+Extension.h"
+#import "NSBundle+Extension.h"
+#import "UIAlertController+Extension.h"

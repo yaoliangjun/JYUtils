@@ -1,15 +1,15 @@
 //
-//  UIImage+iCan.h
-//  iCan
+//  UIImage+Extension.h
+//  JYUtils
 //
 //  Created by Jerry Yao on 17/3/8.
-//  Copyright © 2017年 LinkedTech. All rights reserved.
+//  Copyright © 2017年 Jerry Yao. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface UIImage (iCan)
+@interface UIImage (Extension)
 
 /**
  把颜色转换为图片

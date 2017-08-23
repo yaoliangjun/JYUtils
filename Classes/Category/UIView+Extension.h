@@ -1,11 +1,12 @@
 //
-//  UIView+Yao.h
+//  UIView+Extension.h
+//  JYUtils
 //
 //  Created by Jerry.Yao on 15-11-20.
 //  Copyright (c) 2015年 Jerry Yao. All rights reserved.
 //
 
-@interface UIView (Yao)
+@interface UIView (Extension)
 
 @property (nonatomic, assign) CGFloat   x;
 @property (nonatomic, assign) CGFloat   y;

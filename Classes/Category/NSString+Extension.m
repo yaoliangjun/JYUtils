@@ -1,14 +1,14 @@
 //
-//  NSString+iCan.m
-//  iCan
+//  NSString+Extension.m
+//  JYUtils
 //
 //  Created by Jerry Yao on 17/3/16.
-//  Copyright © 2017年 LinkedTech. All rights reserved.
+//  Copyright © 2017年 Jerry Yao. All rights reserved.
 //
 
-#import "NSString+iCan.h"
+#import "NSString+Extension.h"
 
-@implementation NSString (iCan)
+@implementation NSString (Extension)
 
 
 /**

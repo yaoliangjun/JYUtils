@@ -1,12 +1,12 @@
 //
-//  NSBundle+iCan.m
-//  iCan
+//  NSBundle+Extension.m
+//  JYUtils
 //
 //  Created by Jerry Yao on 2017/6/19.
-//  Copyright © 2017年 LinkedTech. All rights reserved.
+//  Copyright © 2017年 Jerry Yao. All rights reserved.
 //
 
-#import "NSBundle+iCan.h"
+#import "NSBundle+Extension.h"
 #import <objc/runtime.h>
 
 static const char _bundle = 0;
@@ -25,7 +25,7 @@ static const char _bundle = 0;
 
 @end
 
-@implementation NSBundle (iCan)
+@implementation NSBundle (Extension)
 
 + (void)setLanguage:(NSString *)language
 {
