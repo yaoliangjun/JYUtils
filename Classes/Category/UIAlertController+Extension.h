@@ -18,18 +18,22 @@ typedef void (^NegativeHandle)(UIAlertController *alertController);
  
  @param title 标题
  @param message 内容
+ @param alertStyle 弹出框样式
+ @param isDestructive 是否毁灭性(红色)
  @param positiveActionTitle 确定按钮标题
  @param positiveHandle 确定回调
  @param negativeActionTitle 取消按钮标题
  @param negativeHandle 取消按钮回调
  @return UIAlertController
  */
-+ (UIAlertController *)alertControllerWithTitle:(NSString *)title
-                                        message:(NSString *)message
-                            positiveActionTitle:(NSString *)positiveActionTitle
-                                 positiveHandle:(PositiveHandle)positiveHandle
-                            negativeActionTitle:(NSString *)negativeActionTitle
-                                 negativeHandle:(NegativeHandle)negativeHandle;
++ (UIAlertController *)alertWithTitle:(NSString *)title
+                              message:(NSString *)message
+                           alertStyle:(UIAlertControllerStyle)alertStyle
+                        isDestructive:(BOOL)isDestructive
+                  positiveActionTitle:(NSString *)positiveActionTitle
+                       positiveHandle:(PositiveHandle)positiveHandle
+                  negativeActionTitle:(NSString *)negativeActionTitle
+                       negativeHandle:(NegativeHandle)negativeHandle;
 
 /**
  UIAlertController封装(只有确定按钮)
@@ -40,8 +44,9 @@ typedef void (^NegativeHandle)(UIAlertController *alertController);
  @param positiveHandle 确定回调
  @return UIAlertController
  */
-+ (UIAlertController *)alertControllerWithTitle:(NSString *)title
-                                        message:(NSString *)message
-                            positiveActionTitle:(NSString *)positiveActionTitle
-                                 positiveHandle:(PositiveHandle)positiveHandle;
++ (UIAlertController *)alertWithTitle:(NSString *)title
+                              message:(NSString *)message
+                                style:(UIAlertControllerStyle)style
+                  positiveActionTitle:(NSString *)positiveActionTitle
+                       positiveHandle:(PositiveHandle)positiveHandle;
 @end

@@ -42,4 +42,33 @@
     return label;
 }
 
++ (UILabel *)labelWithText:(NSString *)text textColor:(UIColor *) textColor font:(UIFont *)font
+{
+    UILabel *label = [[self alloc] init];
+    label.text = text;
+    label.textColor = textColor;
+    label.font = font;
+    
+    return label;
+}
+
+- (CGFloat)labelWidth
+{
+    NSDictionary *attribute = @{ NSFontAttributeName:self.font };
+    CGSize size = [self.text boundingRectWithSize:CGSizeMake(MAXFLOAT, self.frame.size.height)
+                                          options: NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
+                                       attributes:attribute
+                                          context:nil].size;
+    return size.width;
+}
+
+- (CGFloat)labelHeight
+{
+    NSDictionary *attribute = @{NSFontAttributeName:self.font};
+    CGSize size = [self.text boundingRectWithSize:CGSizeMake(self.frame.size.width, MAXFLOAT)
+                                          options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
+                                       attributes:attribute context:nil].size;
+    return size.height;
+}
+
 @end

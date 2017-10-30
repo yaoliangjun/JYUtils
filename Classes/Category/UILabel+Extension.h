@@ -11,7 +11,7 @@
 @interface UILabel (Extension)
 
 /**
- 创建一个UILabel
+ 创建一个有Frame默认字体颜色的UILabel
  
  @param frame 坐标大小
  @param text 显示的文字
@@ -21,7 +21,7 @@
 + (UILabel *)labelWithFrame:(CGRect)frame text:(NSString *)text font:(UIFont *)font;
 
 /**
- 创建一个UILabel
+ 创建一个有Frame的UILabel
  
  @param frame 坐标大小
  @param text 显示的文字
@@ -30,5 +30,14 @@
  @return UILabel
  */
 + (UILabel *)labelWithFrame:(CGRect)frame text:(NSString *)text textColor:(UIColor *)textColor font:(UIFont *)font;
+
+/** 创建一个有文字、颜色和字体的UILabel */
++ (UILabel *)labelWithText:(NSString *)text textColor:(UIColor *) textColor font:(UIFont *)font;
+
+/** 获取UILabel的宽度 */
+- (CGFloat)labelWidth;
+
+/** 获取UILabel的高度 */
+- (CGFloat)labelHeight;
 
 @end

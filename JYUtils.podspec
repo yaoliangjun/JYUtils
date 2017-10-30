@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "JYUtils"
-  s.version      = "0.0.6"
+  s.version      = "0.0.7"
   s.summary      = "JYUtils是一个快速开发工具包"
 
   # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "JYUtils是一个开发工具包,包含了一些控件封装，工具类等，可加快APP开发速度。"
+  s.description  = "JYUtils是一个开发工具包，包含了一些控件封装，工具类等，可加快APP开发速度。"
 
   s.homepage     = "https://github.com/yaoliangjun/JYUtils"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"

@@ -10,13 +10,11 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (Extension)
-
-/**
- 把颜色转换为图片
-
- @param color 图片的颜色
- @return 图片
- */
+ 
+ /** 把颜色转换为图片 */
 + (UIImage *)imageWithColor:(UIColor *)color;
+
+/** 返回一张可以随意拉伸不变形的图片 */
++ (UIImage *)resizableImage:(NSString *)imageName;
 
 @end
