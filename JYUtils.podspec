@@ -17,18 +17,16 @@ Pod::Spec.new do |s|
 
   s.name         = "JYUtils"
   s.version      = "0.0.8"
-  s.summary      = "JYUtils是一个快速开发工具包"
+  s.summary      = "JYUtils是一个包含了常用的分类和控件的快速开发工具包。"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "JYUtils是一个开发工具包，包含了一些控件封装，工具类等，可加快APP开发速度。"
+  s.description  = "JYUtils是一个包含了控件封装，工具类等的工具包，，可加快APP开发速度。"
 
   s.homepage     = "https://github.com/yaoliangjun/JYUtils"
-  # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
-
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -52,9 +50,6 @@ Pod::Spec.new do |s|
   #
 
   s.author             = { "yaoliangjun" => "913736093@qq.com" }
-  # Or just: s.author    = "yaoliangjun"
-  # s.authors            = { "yaoliangjun" => "913736093@qq.com" }
-  # s.social_media_url   = "http://twitter.com/yaoliangjun"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -92,14 +87,17 @@ Pod::Spec.new do |s|
   s.public_header_files = 'Classes/JYUtils.h'
   s.source_files = 'Classes/JYUtils.h'
 
-  s.default_subspec     = 'Category'
+  #s.default_subspec     = 'Category'
 
   s.subspec 'Category' do |ss|
   ss.source_files = 'Classes/Category/*.{h,m}'
   ss.public_header_files = 'Classes/Category/*.h'
   end
 
-  # s.public_header_files = "Classes/**/*.h"
+  s.subspec 'Widget' do |ss|
+  ss.source_files = 'Classes/Widget/*.{h,m}'
+  ss.public_header_files = 'Classes/Widget/*.h'
+  end
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
