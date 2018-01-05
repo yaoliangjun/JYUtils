@@ -93,6 +93,9 @@ Pod::Spec.new do |s|
   cc.source_files = 'Classes/Category/*.{h,m}'
   cc.public_header_files = 'Classes/Category/*.h'
   cc.dependency 'MBProgressHUD'
+  cc.xcconfig = {
+      'USER_HEADER_SEARCH_PATHS' => '$(inherited) $(SRCROOT)/MBProgressHUD/MBProgressHUD'
+    }
   end
 
   s.subspec 'Widget' do |ww|
