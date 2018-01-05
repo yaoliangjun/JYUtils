@@ -11,20 +11,20 @@
 
 @interface NSString (Extension)
 
-/** 判断字符串是否为Nil或者空 */
+/** 判断字符串是否为空 */
 - (BOOL)isEmpty;
 
 /** 校验手机号是否合法 */
 - (BOOL)isValidPhoneNumber;
 
 /** 邮箱是否合法 */
-- (BOOL)isValieEmail;
+- (BOOL)isValidEmail;
 
 /** 身份证是否合法 */
-- (BOOL)isValieIDCard;
+- (BOOL)isValidIDCard;
 
 /** 银行卡号是否合法 */
-- (BOOL)isValideBankCard;
+- (BOOL)isValidBankCard;
 
 /** 过滤掉字符串中的html标签 */
 + (NSString *)filterHTML:(NSString *)html;
@@ -33,15 +33,15 @@
 + (NSString *)processHTMLString:(NSString *)htmlString;
 
 /** 计算文字宽高 */
-- (CGSize)calculateWithSize:(CGSize)calculateSize font:(UIFont *)font;\
+- (CGSize)calculateWithSize:(CGSize)calculateSize font:(UIFont *)font;
 
-/**
- 判断用户输入的密码是否符合规范，符合规范的密码要求：
- 密码中必须同时包含数字和字母
- */
-- (BOOL)judgePassWordLegal;
+/** 判断字符串是否同时包含数字和字符，并且在最小和最大长度范围内 */
+- (BOOL)isValidAlphanumericWithMinLength:(NSInteger)minLength maxLength:(NSInteger)maxLength;
 
 /** MD5加密 */
 - (NSString *)md5String;
+
+/** 获取系统当前语言 */
++ (NSString *)currentLanguage;
 
 @end

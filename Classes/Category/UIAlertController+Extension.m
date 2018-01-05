@@ -12,7 +12,7 @@
 
 /**
  UIAlertController封装(确定、取消两个按钮)
- 
+
  @param title 标题
  @param message 内容
  @param alertStyle 弹出框样式
@@ -33,35 +33,35 @@
                        negativeHandle:(NegativeHandle)negativeHandle
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:alertStyle];
-    
+
     UIAlertActionStyle actionStyle = UIAlertActionStyleDefault;
     if (isDestructive) {
         actionStyle = UIAlertActionStyleDestructive;
     }
-    
+
     // 确定按钮
     UIAlertAction *positiveAction = [UIAlertAction actionWithTitle:positiveActionTitle style:actionStyle handler:^(UIAlertAction *action) {
         if (positiveHandle) {
             positiveHandle(alertController);
         }
     }];
-    
+
     // 取消按钮
     UIAlertAction *negativeAction = [UIAlertAction actionWithTitle:negativeActionTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         if (negativeHandle) {
             negativeHandle(alertController);
         }
     }];
-    
+
     [alertController addAction:positiveAction];
     [alertController addAction:negativeAction];
-    
+
     return alertController;
 }
 
 /**
- UIAlertController封装(只有确定按钮)
- 
+ UIAlertController封装(只有一个按钮)
+
  @param title 标题
  @param message 内容
  @param positiveActionTitle 确定按钮标题
@@ -75,16 +75,15 @@
                        positiveHandle:(PositiveHandle)positiveHandle
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:style];
-    
-    // 确定按钮
+
     UIAlertAction *positiveAction = [UIAlertAction actionWithTitle:positiveActionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         if (positiveHandle) {
             positiveHandle(alertController);
         }
     }];
-    
+
     [alertController addAction:positiveAction];
-    
+
     return alertController;
 }
 

@@ -7,12 +7,12 @@
 //
 
 #import "NSString+Extension.h"
-#import "NSData+Extension.h"
+#include <CommonCrypto/CommonCrypto.h>
 
 @implementation NSString (Extension)
 
 /**
- *  判断字符串是否为Nil或者空
+ *  判断字符串是否为空
  *  @return  YES:为nil或者空，NO:有内容
  */
 - (BOOL)isEmpty
@@ -26,7 +26,7 @@
         ![self isEqualToString:@"null"]) {
         return NO;
     }
-    
+
     return YES;
 }
 
@@ -39,13 +39,13 @@
     return [postcodeTest evaluateWithObject:self];
 }
 
-- (BOOL)isValieEmail
+- (BOOL)isValidEmail
 {
     NSPredicate *postcodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$"];
     return [postcodeTest evaluateWithObject:self];
 }
 
-- (BOOL)isValieIDCard
+- (BOOL)isValidIDCard
 {
     NSString *idCardStr;
     if (self.length == 15) {
@@ -53,12 +53,12 @@
     } else if (self.length == 18) {
         idCardStr = @"^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$";
     }
-    
+
     NSPredicate *postcodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"idCardStr"];
     return [postcodeTest evaluateWithObject:self];
 }
 
-- (BOOL)isValideBankCard
+- (BOOL)isValidBankCard
 {
     if(self.length==0){
         return NO;
@@ -99,7 +99,7 @@
     if (html == nil) {
         return nil;
     }
-    
+
     NSScanner *scanner = [NSScanner scannerWithString:html];
     NSString *text = nil;
     while([scanner isAtEnd] == NO) {
@@ -107,11 +107,11 @@
         [scanner scanUpToString:@">" intoString:&text];
         html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", text] withString:@""];
     }
-    
+
     html = [html stringByReplacingOccurrencesOfString:@"\t" withString:@""];
     html = [html stringByReplacingOccurrencesOfString:@"\r" withString:@""];
     html = [html stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    
+
     return html;
 }
 
@@ -141,27 +141,44 @@
                         "</script>%@"
                         "</body>"
                         "</html>", htmlString];
-    
+
     return string;
 }
 
 - (CGSize)calculateWithSize:(CGSize)calculateSize font:(UIFont *)font
 {
-    return [self boundingRectWithSize:calculateSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font} context:nil].size;
+    return [self boundingRectWithSize:calculateSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName: font } context:nil].size;
 }
 
-- (BOOL)judgePassWordLegal
+/** 判断字符串是否同时包含数字和字符，并且在最小和最大长度范围内 */
+- (BOOL)isValidAlphanumericWithMinLength:(NSInteger)minLength maxLength:(NSInteger)maxLength
 {
     BOOL result = NO;
-    // 判断长度大于8位后再接着判断是否同时包含数字和字符
-    NSString * regex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+    NSString * regex = [NSString stringWithFormat:@"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{%ld,%ld}$", minLength, maxLength];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     result = [pred evaluateWithObject:self];
     return result;
 }
 
+/** MD5加密 */
 - (NSString *)md5String {
-    return [[self dataUsingEncoding:NSUTF8StringEncoding] md5String];
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+    CC_MD5([self dataUsingEncoding:NSUTF8StringEncoding].bytes, (CC_LONG)[self dataUsingEncoding:NSUTF8StringEncoding].length, result);
+    return [NSString stringWithFormat:
+            @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+            result[0], result[1], result[2], result[3],
+            result[4], result[5], result[6], result[7],
+            result[8], result[9], result[10], result[11],
+            result[12], result[13], result[14], result[15]
+            ];
+}
+
++ (NSString *)currentLanguage
+{
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *allLanguages = [defaults objectForKey:@"AppleLanguages"];
+    NSString *preferredLang = [allLanguages objectAtIndex:0];
+    return preferredLang;
 }
 
 @end

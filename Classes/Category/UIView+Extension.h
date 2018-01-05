@@ -18,27 +18,17 @@
 @property (nonatomic, assign) CGFloat   right;
 @property (nonatomic, assign) CGFloat   centerX;
 @property (nonatomic, assign) CGFloat   centerY;
-@property (nonatomic, strong, readonly) UIView *lastSubviewOnX;
-@property (nonatomic, strong, readonly) UIView *lastSubviewOnY;
 
-/**
- * @brief 抖动
- */
-- (void) shake;
+/** 抖动 */
+- (void)shake;
 
-/**
- * @brief 移除此view上的所有子视图
- */
+/** 移除此view上的所有子视图 */
 - (void)removeAllSubviews;
 
+/** 创建一条分割线(有颜色) */
++ (UIView *)lineWithColor:(UIColor *)color;
 
-/**
- 分割线
- 
- @param frame 坐标
- @param backgroundColor 分割线的颜色
- @return separateView
- */
-+ (UIView *)separateLineWithFrame:(CGRect)frame color:(UIColor *)backgroundColor;
+/** 创建一条分割线(有Frame、颜色) */
++ (UIView *)lineWithFrame:(CGRect)frame color:(UIColor *)color;
 
 @end

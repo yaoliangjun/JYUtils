@@ -10,6 +10,17 @@
 
 @interface NSBundle (Extension)
 
+/** 设置APP语言 */
 + (void)setLanguage:(NSString *)language;
 
+/** 获取APP名字 */
++ (NSString *)appName;
+
+/** 获取APP版本号 */
++ (NSString *)appVersion;
+
+/** 获取APP编译版本号 */
++ (NSString *)appBuildVersion;
+
 @end
+

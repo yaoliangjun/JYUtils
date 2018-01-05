@@ -10,29 +10,23 @@
 
 @interface UILabel (Extension)
 
-/**
- 创建一个有Frame默认字体颜色的UILabel
- 
- @param frame 坐标大小
- @param text 显示的文字
- @param font 字体
- @return UILabel
- */
+/** 创建一个UILabel(有文字、字体) */
++ (UILabel *)labelWithText:(NSString *)text font:(UIFont *)font;
+
+/** 创建一个UILabel(有文字、颜色、字体) */
++ (UILabel *)labelWithText:(NSString *)text textColor:(UIColor *) textColor font:(UIFont *)font;
+
+/** 创建一个UILabel(有文字、对齐方式、颜色、字体) */
++ (UILabel *)labelWithText:(NSString *)text textAlignment:(NSTextAlignment)textAlignment textColor:(UIColor *) textColor font:(UIFont *)font;
+
+/** 创建一个UILabel(有Frame、文字、字体) */
 + (UILabel *)labelWithFrame:(CGRect)frame text:(NSString *)text font:(UIFont *)font;
 
-/**
- 创建一个有Frame的UILabel
- 
- @param frame 坐标大小
- @param text 显示的文字
- @param textColor 文字颜色
- @param font 字体
- @return UILabel
- */
+/** 创建一个UILabel(有Frame、文字、颜色、字体) */
 + (UILabel *)labelWithFrame:(CGRect)frame text:(NSString *)text textColor:(UIColor *)textColor font:(UIFont *)font;
 
-/** 创建一个有文字、颜色和字体的UILabel */
-+ (UILabel *)labelWithText:(NSString *)text textColor:(UIColor *) textColor font:(UIFont *)font;
+/** 创建一个UILabel(有Frame、文字、对齐方式、颜色、字体) */
++ (UILabel *)labelWithFrame:(CGRect)frame text:(NSString *)text textAlignment:(NSTextAlignment)textAlignment textColor:(UIColor *)textColor font:(UIFont *)font;
 
 /** 获取UILabel的宽度 */
 - (CGFloat)labelWidth;

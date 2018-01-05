@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "JYUtils"
-  s.version      = "0.0.8"
+  s.version      = "0.0.9"
   s.summary      = "JYUtils是一个包含了常用的分类和控件的快速开发工具包。"
 
   # This description is used to generate tags and improve search results.
@@ -57,8 +57,8 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  #s.platform     = :ios
+  s.platform     = :ios, "7.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -74,7 +74,7 @@ Pod::Spec.new do |s|
   #
 
   s.source       = { :git => "https://github.com/yaoliangjun/JYUtils.git", :tag => "#{s.version}" }
-
+  s.requires_arc = true
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -89,14 +89,15 @@ Pod::Spec.new do |s|
 
   #s.default_subspec     = 'Category'
 
-  s.subspec 'Category' do |ss|
-  ss.source_files = 'Classes/Category/*.{h,m}'
-  ss.public_header_files = 'Classes/Category/*.h'
+  s.subspec 'Category' do |cc|
+  cc.source_files = 'Classes/Category/*.{h,m}'
+  cc.public_header_files = 'Classes/Category/*.h'
+  cc.dependency 'MBProgressHUD'
   end
 
-  s.subspec 'Widget' do |ss|
-  ss.source_files = 'Classes/Widget/*.{h,m}'
-  ss.public_header_files = 'Classes/Widget/*.h'
+  s.subspec 'Widget' do |ww|
+  ww.source_files = 'Classes/Widget/*.{h,m}'
+  ww.public_header_files = 'Classes/Widget/*.h'
   end
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

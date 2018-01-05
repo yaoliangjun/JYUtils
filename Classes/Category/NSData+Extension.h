@@ -13,7 +13,5 @@
 // 把base64编码的头像转为NSData
 + (NSData *)base64String2Image:(NSString *)base64Str;
 
-/** MD5加密 */
-- (NSString *)md5String;
-
 @end
+

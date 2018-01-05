@@ -15,7 +15,7 @@ typedef void (^NegativeHandle)(UIAlertController *alertController);
 
 /**
  UIAlertController封装(确定、取消两个按钮)
- 
+
  @param title 标题
  @param message 内容
  @param alertStyle 弹出框样式
@@ -36,8 +36,8 @@ typedef void (^NegativeHandle)(UIAlertController *alertController);
                        negativeHandle:(NegativeHandle)negativeHandle;
 
 /**
- UIAlertController封装(只有确定按钮)
- 
+ UIAlertController封装(只有一个按钮)
+
  @param title 标题
  @param message 内容
  @param positiveActionTitle 确定按钮标题
