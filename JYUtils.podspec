@@ -87,17 +87,17 @@ Pod::Spec.new do |s|
   s.public_header_files = 'Classes/JYUtils.h'
   s.source_files = 'Classes/JYUtils.h'
 
-  #s.default_subspec     = 'Category'
+  #s.default_subspec     = 'JYCategory'
 
-  s.subspec 'Category' do |cc|
-  cc.source_files = 'Classes/Category/*.{h,m}'
-  cc.public_header_files = 'Classes/Category/*.h'
+  s.subspec 'JYCategory' do |cc|
+  cc.source_files = 'Classes/JYCategory/*.{h,m}'
+  cc.public_header_files = 'Classes/JYCategory/*.h'
   cc.dependency 'MBProgressHUD'
   end
 
-  s.subspec 'Widget' do |ww|
-  ww.source_files = 'Classes/Widget/*.{h,m}'
-  ww.public_header_files = 'Classes/Widget/*.h'
+  s.subspec 'JYWidget' do |ww|
+  ww.source_files = 'Classes/JYWidget/*.{h,m}'
+  ww.public_header_files = 'Classes/JYWidget/*.h'
   end
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
