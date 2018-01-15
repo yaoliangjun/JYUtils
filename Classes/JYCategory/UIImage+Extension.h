@@ -20,12 +20,10 @@
 /** 从一个控件中截取指定大小的图片 */
 + (UIImage *)imageFromView :(UIView *)view size:(CGSize)size;
 
-/**
- *  从图片中按指定的位置大小截取图片的一部分
- *  @param image UIImage image 原始的图片
- *  @param rect  CGRect rect 要截取的区域
- *  @return UIImage
- */
+/** 从图片中按指定的位置大小截取图片的一部分 */
 + (UIImage *)cutImageFromImage:(UIImage *)image inRect:(CGRect)rect;
+
+/** 创建二维码 */
++ (UIImage *)createQRImageWithString:(NSString *)string size:(CGSize)size;
 
 @end
