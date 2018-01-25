@@ -123,6 +123,18 @@
     return textField;
 }
 
+/** 创建一个UITextField(有背景颜色、圆角、leftView) */
++ (UITextField *)textFieldWithText:(NSString *)text textColor:(UIColor *)textColor placeHolder:(NSString *)placeHolder placeHolderColor:(UIColor *)placeHolderColor font:(UIFont *)font backgroundColor:(UIColor *)backgroundColor cornerRadius:(float)cornerRadius leftView:(UIView *)leftView
+{
+    UITextField *textField = [self textFieldWithText:text textColor:textColor placeHolder:placeHolder placeHolderColor:placeHolderColor font:font borderColor:nil borderWidth:0 cornerRadius:cornerRadius];
+    textField.backgroundColor = backgroundColor;
+    if (leftView != nil) {
+        textField.leftView = leftView;
+        textField.leftViewMode = UITextFieldViewModeAlways;
+    }
+    return textField;
+}
+
 /** 创建一个UITextField(有背景颜色、边框、边框颜色、圆角、leftView、rightView) */
 + (UITextField *)textFieldWithText:(NSString *)text textColor:(UIColor *)textColor placeHolder:(NSString *)placeHolder placeHolderColor:(UIColor *)placeHolderColor font:(UIFont *)font backgroundColor:(UIColor *)backgroundColor borderColor:(UIColor *)borderColor borderWidth:(float)borderWidth cornerRadius:(float)cornerRadius leftView:(UIView *)leftView rightView:(UIView *)rightView
 {

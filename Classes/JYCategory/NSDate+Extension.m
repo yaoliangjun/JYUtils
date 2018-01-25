@@ -215,4 +215,29 @@
     return [[[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:self] day];
 }
 
+/**
+ 把某种格式的时间字符串转换成指定格式的时间字符串
+
+ @param dateString e.g. @"2017-02-27 18:22"
+ @return 指定格式的时间字符串 e.g. @"17-02-27 18:22"
+ */
++ (NSString *)dateStringWithString:(NSString *)dateString fromFormatter:(NSString *)fromFormatter toFormatter:(NSString *)toFormatter
+{
+    if (!dateString.length || !fromFormatter.length || !toFormatter.length) {
+        return @"";
+    }
+
+    NSDateFormatter *mFormatter = [[NSDateFormatter alloc] init];
+    [mFormatter setDateFormat:fromFormatter];
+    NSDate *date = [mFormatter dateFromString:dateString];
+    // 目标格式
+    [mFormatter setDateFormat:toFormatter];
+
+    NSString *toDate = [mFormatter stringFromDate:date];
+    if (!toDate) {
+        toDate = @"";
+    }
+    return toDate;
+}
+
 @end

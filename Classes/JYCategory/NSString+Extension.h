@@ -44,4 +44,34 @@
 /** 获取系统当前语言 */
 + (NSString *)currentLanguage;
 
+/** 是否是简体中文 */
++ (BOOL)isChineseSimplified;
+
+/** 是否是繁体中文(包含所有繁体) */
++ (BOOL)isChineseTraditional;
+
+/** 是否是繁体中文 */
++ (BOOL)isTraditional;
+
+/** 是否是繁体香港 */
++ (BOOL)isChineseTraditionalHK;
+
+/** 是否是繁体台湾 */
++ (BOOL)isChineseTraditionalTW;
+
+/** 是否是繁体澳门 */
++ (BOOL)isChineseTraditionalMO;
+
+/** 判断是否为整形 */
+- (BOOL)isPureInt;
+
+/** 判断是否为浮点形 */
+- (BOOL)isPureFloat;
+
+/** 字符串保留小数点 */
+- (NSString *)decimalPoint:(int)count;
+
+/** 获取字符串默认保留小数点 */
+- (NSString *)defaultDecimalPoint;
+
 @end

@@ -17,7 +17,7 @@
 #define kHUDHexRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 static NSTimeInterval kHUDDelayInterval = HUDDurationLong;
-static CGFloat        kHUDAlpha = 1;
+static CGFloat        kHUDAlpha = 0.8;
 static CGFloat        kHUDCornerRadius = 4;
 
 @implementation MBProgressHUD (Extension)
@@ -135,8 +135,6 @@ static CGFloat        kHUDCornerRadius = 4;
     hud.bezelView.backgroundColor = kHUDBackgroundColor;
     hud.bezelView.alpha = kHUDAlpha;
     hud.bezelView.layer.cornerRadius = kHUDCornerRadius;
-    hud.bezelView.layer.borderColor = kHUDTextColor.CGColor;
-    hud.bezelView.layer.borderWidth = 0.1;
     hud.contentColor = kHUDTextColor;
 
     return hud;

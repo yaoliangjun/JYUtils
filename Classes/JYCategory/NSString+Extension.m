@@ -181,4 +181,106 @@
     return preferredLang;
 }
 
+/** 是否是简体中文 */
++ (BOOL)isChineseSimplified
+{
+    NSString *language = [NSString currentLanguage];
+    if ([language isEqualToString:@"zh-Hans"] ||     // iOS8
+        [language isEqualToString:@"zh-Hans-US"] ||  // iOS9
+        [language isEqualToString:@"zh-Hans-CN"]) {  // iOS10、11
+        return YES;
+    }
+    return NO;
+}
+
+/** 是否是繁体中文(包含所有繁体) */
++ (BOOL)isChineseTraditional
+{
+    if ([self isTraditional] ||
+        [self isChineseTraditionalHK] ||
+        [self isChineseTraditionalTW] ||
+        [self isChineseTraditionalMO]) {
+        return YES;
+    }
+    return NO;
+}
+
+/** 是否是繁体中文(繁体中文) */
++ (BOOL)isTraditional
+{
+    NSString *language = [NSString currentLanguage];
+    if ([language isEqualToString:@"zh-Hant"] ||     // iOS8
+        [language isEqualToString:@"zh-Hant-US"] ||  // iOS9、10
+        [language isEqualToString:@"zh-Hant-CN"]) {  // iOS11
+        return YES;
+    }
+    return NO;
+}
+
+/** 是否是繁体香港 */
++ (BOOL)isChineseTraditionalHK
+{
+    NSString *language = [NSString currentLanguage];
+    if ([language isEqualToString:@"zh-HK"] ||      // iOS8、9
+        [language isEqualToString:@"zh-Hant-HK"]) { // iOS10、11
+        return YES;
+    }
+    return NO;
+}
+
+/** 是否是繁体台湾 */
++ (BOOL)isChineseTraditionalTW
+{
+    NSString *language = [NSString currentLanguage];
+    if ([language isEqualToString:@"zh-TW"] ||      // iOS8、9
+        [language isEqualToString:@"zh-Hant-TW"]) { // iOS10、11
+        return YES;
+    }
+    return NO;
+}
+
+/** 是否是繁体澳门 */
++ (BOOL)isChineseTraditionalMO
+{
+    NSString *language = [NSString currentLanguage];
+    if ([language isEqualToString:@"zh-MO"] ||      // iOS8、9
+        [language isEqualToString:@"zh-Hant-MO"]) { // iOS10、11
+        return YES;
+    }
+    return NO;
+}
+
+/** 判断是否为整形 */
+- (BOOL)isPureInt
+{
+    int val;
+    NSScanner *scan = [NSScanner scannerWithString:self];
+    return [scan scanInt:&val] && [scan isAtEnd];
+}
+
+/** 判断是否为浮点形 */
+- (BOOL)isPureFloat
+{
+    float val;
+    NSScanner *scan = [NSScanner scannerWithString:self];
+    return [scan scanFloat:&val] && [scan isAtEnd];
+}
+
+/** 字符串保留小数点 */
+- (NSString *)decimalPoint:(int)count
+{
+    if (!self.length || (![self isPureInt] && ![self isPureFloat])) {
+        return @"0";
+    }
+
+    NSString *str = [NSString stringWithFormat:@"%%.%df", count];
+    return [NSString stringWithFormat:str, [self doubleValue]];
+}
+
+/** 获取字符串默认保留小数点 */
+- (NSString *)defaultDecimalPoint
+{
+    return [self decimalPoint:4];
+}
+
 @end
