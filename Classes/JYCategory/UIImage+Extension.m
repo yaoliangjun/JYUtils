@@ -74,7 +74,8 @@
     return newImage;
 }
 
-+ (UIImage *)createQRImageWithString:(NSString *)string size:(CGSize)size {
+/** 生成二维码 */
++ (UIImage *)createQRCodeImageWithString:(NSString *)string size:(CGSize)size {
     if (!string.length) {
         return nil;
     }
@@ -100,4 +101,61 @@
     return codeImage;
 }
 
+/** 生成条形码 */
++ (instancetype)createBarCodeImageWithString:(NSString *)string size:(CGSize)size
+{
+    CIImage *ciImage = [self generateBarCodeImage:string];
+    return [self resizeCodeImage:ciImage withSize:CGSizeMake(size.width, size.height)];
+}
+
++ (CIImage *)generateBarCodeImage:(NSString *)string
+{
+    // iOS 8.0以上的系统才支持条形码的生成，iOS8.0以下使用第三方控件生成
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        // 注意生成条形码的编码方式
+        NSData *data = [string dataUsingEncoding: NSASCIIStringEncoding];
+        CIFilter *filter = [CIFilter filterWithName:@"CICode128BarcodeGenerator"];
+        [filter setValue:data forKey:@"inputMessage"];
+        // 设置生成的条形码的上，下，左，右的margins的值
+        [filter setValue:[NSNumber numberWithInteger:0] forKey:@"inputQuietSpace"];
+        return filter.outputImage;
+    }
+
+    return nil;
+}
+
+/**
+ *  调整生成的图片的大小
+ *
+ *  @param image CIImage对象
+ *  @param size  需要的UIImage的大小
+ *
+ *  @return size大小的UIImage对象
+ */
++ (UIImage *)resizeCodeImage:(CIImage *)image withSize:(CGSize)size
+{
+    if (image) {
+        CGRect extent = CGRectIntegral(image.extent);
+        CGFloat scaleWidth = size.width/CGRectGetWidth(extent);
+        CGFloat scaleHeight = size.height/CGRectGetHeight(extent);
+        size_t width = CGRectGetWidth(extent) * scaleWidth;
+        size_t height = CGRectGetHeight(extent) * scaleHeight;
+        CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceGray();
+        CGContextRef contentRef = CGBitmapContextCreate(nil, width, height, 8, 0, colorSpaceRef, (CGBitmapInfo)kCGImageAlphaNone);
+        CIContext *context = [CIContext contextWithOptions:nil];
+        CGImageRef imageRef = [context createCGImage:image fromRect:extent];
+        CGContextSetInterpolationQuality(contentRef, kCGInterpolationNone);
+        CGContextScaleCTM(contentRef, scaleWidth, scaleHeight);
+        CGContextDrawImage(contentRef, extent, imageRef);
+        CGImageRef imageRefResized = CGBitmapContextCreateImage(contentRef);
+        CGContextRelease(contentRef);
+        CGImageRelease(imageRef);
+        return [UIImage imageWithCGImage:imageRefResized];
+
+    } else {
+        return nil;
+    }
+}
+
 @end
+

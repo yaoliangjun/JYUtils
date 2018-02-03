@@ -280,7 +280,18 @@
 /** 获取字符串默认保留小数点 */
 - (NSString *)defaultDecimalPoint
 {
-    return [self decimalPoint:4];
+    return [self decimalPoint:5];
+}
+
+/** 保留N为小数，不四舍五入 */
++ (NSString *)doubleValue:(double)doubleValue afterPoint:(int)position
+{
+    NSDecimalNumberHandler *roundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown scale:position raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
+    NSDecimalNumber *ouncesDecimal = [[NSDecimalNumber alloc] initWithDouble:doubleValue];
+    NSDecimalNumber *roundedOunces = [ouncesDecimal decimalNumberByRoundingAccordingToBehavior:roundingBehavior];
+
+    return [NSString stringWithFormat:@"%@", roundedOunces];
 }
 
 @end
+

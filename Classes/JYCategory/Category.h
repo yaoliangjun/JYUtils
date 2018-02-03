@@ -23,5 +23,6 @@
 #import "UIAlertController+Extension.h"
 #import "UIBarButtonItem+Extension.h"
 #import "MBProgressHUD+Extension.h"
+#import "NSMutableArray+Extension.h"
 
 #endif /* Category_h */

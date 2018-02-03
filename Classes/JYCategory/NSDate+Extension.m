@@ -30,9 +30,28 @@
     return [mFormatter stringFromDate:date];
 }
 
+/**
+ 秒转成指定格式的时间字符串
+
+ @param second 秒
+ @param formatter 时间格式
+ @return 时间字符串
+ */
++ (NSString *)dateStringWithSecond:(NSString *)second formatter:(NSString *)formatter
+{
+    if (!second || !formatter) {
+        return@"";
+    }
+
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[second doubleValue]];
+    NSDateFormatter *mFormatter = [[NSDateFormatter alloc] init];
+    [mFormatter setDateFormat:formatter];
+
+    return [mFormatter stringFromDate:date];
+}
 
 /**
- 把一个指定格式的时间字符串，转换成毫秒字符串
+ 把一个指定格式的时间字符串，转换成(毫秒)字符串
 
  @param dateString 时间字符串
  @param formatter 时间字符串的格式
@@ -47,6 +66,26 @@
     NSDateFormatter *mFormatter = [[NSDateFormatter alloc] init];
     mFormatter.dateFormat = formatter;
     NSString *millisecondStr = [NSString stringWithFormat:@"%.0f", ([[mFormatter dateFromString:dateString] timeIntervalSince1970]) * 1000];
+
+    return millisecondStr;
+}
+
+/**
+ 把一个指定格式的时间字符串，转换成(秒)字符串
+
+ @param dateString 时间字符串
+ @param formatter 时间字符串的格式
+ @return 秒数字符串
+ */
++ (NSString *)secondWithDateString:(NSString *)dateString formatter:(NSString *)formatter
+{
+    if (!dateString || !formatter) {
+        return@"";
+    }
+
+    NSDateFormatter *mFormatter = [[NSDateFormatter alloc] init];
+    mFormatter.dateFormat = formatter;
+    NSString *millisecondStr = [NSString stringWithFormat:@"%.0f", ([[mFormatter dateFromString:dateString] timeIntervalSince1970])];
 
     return millisecondStr;
 }
@@ -240,4 +279,31 @@
     return toDate;
 }
 
+/** 获取当前时间的时间戳(秒) */
++ (NSString *)secondWithCurrentDate
+{
+    NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval timeInterval = [currentDate timeIntervalSince1970];
+
+    NSString *timeString = [NSString stringWithFormat:@"%f", timeInterval];
+    NSInteger i = [timeString integerValue];
+    NSString *second = [NSString stringWithFormat:@"%ld",(long)i];
+
+    return second;
+}
+
+/** 获取当前时间的时间戳(毫秒) */
++ (NSString *)millisecondWithCurrentDate
+{
+    NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval timeInterval = [currentDate timeIntervalSince1970] * 1000;
+
+    NSString *timeString = [NSString stringWithFormat:@"%f", timeInterval];
+    NSInteger i = [timeString integerValue];
+    NSString *second = [NSString stringWithFormat:@"%ld",(long)i];
+
+    return second;
+}
+
 @end
+

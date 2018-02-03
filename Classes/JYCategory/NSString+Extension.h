@@ -74,4 +74,8 @@
 /** 获取字符串默认保留小数点 */
 - (NSString *)defaultDecimalPoint;
 
+/** 保留N为小数，不四舍五入 */
++ (NSString *)doubleValue:(double)doubleValue afterPoint:(int)position;
+
 @end
+

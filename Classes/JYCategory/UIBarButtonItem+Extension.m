@@ -33,7 +33,7 @@
     if (imageName.length) {
         [button setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     }
-    
+
     if (highlightedImageName.length) {
         [button setBackgroundImage:[UIImage imageNamed:highlightedImageName] forState:UIControlStateHighlighted];
     }
@@ -42,7 +42,7 @@
     btnFrame.size = button.currentBackgroundImage.size;
     button.frame = btnFrame;
     [button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
-    
+
     return [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
@@ -51,7 +51,10 @@
 {
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:target action:selector];
     [barButtonItem setTitleTextAttributes:@{NSFontAttributeName: font, NSForegroundColorAttributeName: titleColor} forState:UIControlStateNormal];
+    [barButtonItem setTitleTextAttributes:@{NSFontAttributeName: font, NSForegroundColorAttributeName: titleColor} forState:UIControlStateHighlighted];
+    [barButtonItem setTitleTextAttributes:@{NSFontAttributeName: font, NSForegroundColorAttributeName: titleColor} forState:UIControlStateSelected];
     return  barButtonItem;
 }
 
 @end
+

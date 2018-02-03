@@ -24,8 +24,9 @@ typedef void (^TapCallBack) (NSInteger index);
  *  @return 返回轮播图控件
  */
 - (instancetype)initWithFrame:(CGRect)frame
-                  imageArray:(NSArray *)imageArray
+                   imageArray:(NSArray *)imageArray
            scrollTimeInterval:(NSTimeInterval)scrollTimeInterval
                   tapCallBack:(TapCallBack)tapCallBack;
 
 @end
+

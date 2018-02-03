@@ -23,7 +23,11 @@
 /** 从图片中按指定的位置大小截取图片的一部分 */
 + (UIImage *)cutImageFromImage:(UIImage *)image inRect:(CGRect)rect;
 
-/** 创建二维码 */
-+ (UIImage *)createQRImageWithString:(NSString *)string size:(CGSize)size;
+/** 生成二维码 */
++ (UIImage *)createQRCodeImageWithString:(NSString *)string size:(CGSize)size;
+
+/** 生成条形码 */
++ (instancetype)createBarCodeImageWithString:(NSString *)string size:(CGSize)size;
 
 @end
+

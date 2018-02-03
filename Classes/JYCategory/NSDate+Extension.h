@@ -24,7 +24,7 @@
 @interface NSDate (Extension)
 
 /**
- 毫秒转成指定格式的时间字符串
+ (毫秒)转成指定格式的时间字符串
 
  @param millisecond 毫秒
  @param formatter 时间格式
@@ -33,13 +33,31 @@
 + (NSString *)dateStringWithMillisecond:(NSString *)millisecond formatter:(NSString *)formatter;
 
 /**
- 把一个指定格式的时间字符串，转换成毫秒字符串
+ 秒转成指定格式的时间字符串
+
+ @param second 秒
+ @param formatter 时间格式
+ @return 时间字符串
+ */
++ (NSString *)dateStringWithSecond:(NSString *)second formatter:(NSString *)formatter;
+
+/**
+ 把一个指定格式的时间字符串，转换成(毫秒字符串)
 
  @param dateString 时间字符串
  @param formatter 时间字符串的格式
  @return 毫秒数字符串
  */
 + (NSString *)millisecondWithDateString:(NSString *)dateString formatter:(NSString *)formatter;
+
+/**
+ 把一个指定格式的时间字符串，转换成(秒)字符串
+
+ @param dateString 时间字符串
+ @param formatter 时间字符串的格式
+ @return 秒数字符串
+ */
++ (NSString *)secondWithDateString:(NSString *)dateString formatter:(NSString *)formatter;
 
 /**
  把一个指定格式的时间，转换成毫秒字符串
@@ -126,4 +144,11 @@
  */
 + (NSString *)dateStringWithString:(NSString *)dateString fromFormatter:(NSString *)fromFormatter toFormatter:(NSString *)toFormatter;
 
+/** 获取当前时间的时间戳(秒) */
++ (NSString *)secondWithCurrentDate;
+
+/** 获取当前时间的时间戳(毫秒) */
++ (NSString *)millisecondWithCurrentDate;
+
 @end
+

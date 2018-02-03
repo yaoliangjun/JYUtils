@@ -16,6 +16,8 @@ typedef NS_ENUM(NSInteger, HUDDuration) {
 
 @interface MBProgressHUD (Extension)
 
+/** 获取一个默认的HUD */
++ (MBProgressHUD *)defaultHUD;
 
 #pragma mark - 显示然后消失
 /** 默认的HUD，2秒后消失 */
@@ -67,7 +69,11 @@ typedef NS_ENUM(NSInteger, HUDDuration) {
 /** 显示带文字的菊花HUD */
 + (void)showLoadingWithStatus:(NSString *)status;
 
+/** 显示菊花加载框,N秒后消失 */
++ (void)showLoadingWithDuration:(float)duration;
+
 /** 隐藏菊花HUD */
 + (void)dismiss;
 
 @end
+

@@ -8,9 +8,9 @@
 
 #import "MBProgressHUD+Extension.h"
 
+#define kHUDKeyWindow [UIApplication sharedApplication].keyWindow
 #define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-#define kHUDKeyWindow [UIApplication sharedApplication].keyWindow
 #define kHUDBackgroundColor kHUDHexRGB(0x000000)
 #define kHUDTextFont [UIFont systemFontOfSize:12]
 #define kHUDTextColor [UIColor whiteColor]
@@ -37,7 +37,7 @@ static CGFloat        kHUDCornerRadius = 4;
 + (void)showWithStatus:(NSString *)status completionHandle:(void(^)())completionHandle
 {
     [self showWithStatus:status duration:kHUDDelayInterval];
-    
+
     if (completionHandle) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kHUDDelayInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             completionHandle();
@@ -53,7 +53,7 @@ static CGFloat        kHUDCornerRadius = 4;
 + (void)showShortWithStatus:(NSString *)status completionHandle:(void(^)())completionHandle
 {
     [self showWithStatus:status duration:HUDDurationShort];
-    
+
     if (completionHandle) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(HUDDurationShort * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             completionHandle();
@@ -69,7 +69,7 @@ static CGFloat        kHUDCornerRadius = 4;
 + (void)showLongWithStatus:(NSString *)status completionHandle:(void(^)())completionHandle
 {
     [self showWithStatus:status duration:HUDDurationLong];
-    
+
     if (completionHandle) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(HUDDurationLong * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             completionHandle();
@@ -86,7 +86,7 @@ static CGFloat        kHUDCornerRadius = 4;
 + (void)showWithStatus:(NSString *)status duration:(float)duration completionHandle:(void(^)())completionHandle
 {
     [self showWithStatus:status duration:duration];
-    
+
     if (completionHandle) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             completionHandle();
@@ -128,7 +128,7 @@ static CGFloat        kHUDCornerRadius = 4;
     });
 }
 
-/** 获取一个通用的HUD */
+/** 获取一个默认的HUD */
 + (MBProgressHUD *)defaultHUD
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:kHUDKeyWindow animated:YES];
@@ -143,7 +143,7 @@ static CGFloat        kHUDCornerRadius = 4;
 #pragma mark - 持续显示
 /** 显示菊花HUD */
 + (void)showLoading
-{    
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         MBProgressHUD *hud = [MBProgressHUD defaultHUD];
         CGFloat hudWH = 100;
@@ -165,6 +165,21 @@ static CGFloat        kHUDCornerRadius = 4;
     });
 }
 
+/** 显示菊花加载框,N秒后消失 */
++ (void)showLoadingWithDuration:(float)duration
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MBProgressHUD *hud = [MBProgressHUD defaultHUD];
+        CGFloat hudWH = 100;
+        CGRect frame = hud.frame;
+        frame = CGRectMake((SCREEN_WIDTH - hudWH) / 2, (SCREEN_HEIGHT - hudWH) / 2, hudWH, hudWH);
+        hud.frame = frame;
+        kHUDKeyWindow.userInteractionEnabled = NO; // 禁止交互
+        [hud hideAnimated:NO afterDelay:duration];
+        kHUDKeyWindow.userInteractionEnabled = YES; // 允许交互
+    });
+}
+
 /** 隐藏菊花HUD */
 + (void)dismiss
 {
@@ -176,3 +191,4 @@ static CGFloat        kHUDCornerRadius = 4;
 }
 
 @end
+

@@ -28,6 +28,17 @@
     return textField;
 }
 
+/** 创建一个UITextField(有leftView) */
++ (UITextField *)textFieldWithText:(NSString *)text textColor:(UIColor *)textColor placeHolder:(NSString *)placeHolder placeHolderColor:(UIColor *)placeHolderColor font:(UIFont *)font leftView:(UIView *)leftView
+{
+    UITextField *textField = [self textFieldWithText:text textColor:textColor placeHolder:placeHolder placeHolderColor:placeHolderColor font:font];
+    if (leftView != nil) {
+        textField.leftView = leftView;
+        textField.leftViewMode = UITextFieldViewModeAlways;
+    }
+    return textField;
+}
+
 /** 创建一个UITextField(有背景图片) */
 + (UITextField *)textFieldWithText:(NSString *)text textColor:(UIColor *)textColor placeHolder:(NSString *)placeHolder placeHolderColor:(UIColor *)placeHolderColor font:(UIFont *)font backgroundImageNamed:(NSString *)backgroundImageNamed
 {
@@ -143,4 +154,21 @@
     return textField;
 }
 
+/** 创建一个UITextField(有边框、边框颜色、圆角、leftView和leftViewMode、rightView和rightViewMode) */
++ (UITextField *)textFieldWithText:(NSString *)text textColor:(UIColor *)textColor placeHolder:(NSString *)placeHolder placeHolderColor:(UIColor *)placeHolderColor font:(UIFont *)font borderColor:(UIColor *)borderColor borderWidth:(float)borderWidth cornerRadius:(float)cornerRadius leftView:(UIView *)leftView leftViewMode:(UITextFieldViewMode)leftViewMode rightView:(UIView *)rightView rightViewMode:(UITextFieldViewMode)rightViewMode
+{
+    UITextField *textField = [self textFieldWithText:text textColor:textColor placeHolder:placeHolder placeHolderColor:placeHolderColor font:font borderColor:borderColor borderWidth:borderWidth cornerRadius:cornerRadius];
+    if (leftView != nil) {
+        textField.leftView = leftView;
+        textField.leftViewMode = leftViewMode;
+    }
+
+    if (rightView != nil) {
+        textField.rightView = rightView;
+        textField.rightViewMode = rightViewMode;
+    }
+    return textField;
+}
+
 @end
+

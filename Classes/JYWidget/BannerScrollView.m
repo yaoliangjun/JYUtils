@@ -26,7 +26,7 @@
 @implementation BannerScrollView
 
 - (instancetype)initWithFrame:(CGRect)frame
-                  imageArray:(NSArray *)imageArray
+                   imageArray:(NSArray *)imageArray
            scrollTimeInterval:(NSTimeInterval)scrollTimeInterval
                   tapCallBack:(TapCallBack)tapCallBack
 {
@@ -35,10 +35,10 @@
         _imageArray = imageArray;
         _scrollTimeInterval = scrollTimeInterval;
         _tapCallBack = tapCallBack;
-        
+
         [self setupSubViews];
     }
-    
+
     return self;
 }
 
@@ -56,11 +56,11 @@
     self.scrollView.contentOffset = CGPointMake(VIEW_WIDTH, 0);
     self.scrollView.delegate = self;
     [self addSubview:self.scrollView];
-    
+
     // 初始化imageview
     NSInteger imagesCount = _imageArray.count;
     _imageViews = [NSMutableArray array];
-    
+
     //创建三个imageView作为循环复用的载体，图片将循环加载在这三个imageView上面
     if (imagesCount <= 1) {
         NSInteger index = 0;
@@ -68,13 +68,13 @@
         imageView.frame = CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT);
         imageView.userInteractionEnabled = YES;
         imageView.tag = index;
-        
+
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewClicked:)];
         [imageView addGestureRecognizer:tap];
-        
+
         [self setImageView:imageView atIndex:index];
         [self addSubview:imageView];
-        
+
     } else {
         for (NSInteger i = 0; i < 3; i++) {
             UIImageView *imageView = [[UIImageView alloc] init];
@@ -82,25 +82,25 @@
             imageView.userInteractionEnabled = YES;
             // (self.dataArray.count - 1 + i) % self.dataArray.count也可以达到让一开始3个imageview分别显示最后一张<-->第一张<-->第二张图片,但是让大家理解起来会有一定难度,所以采用下面最简单的方法直接设置
             // imageView.tag = (self.dataArray.count - 1 + i) % self.dataArray.count;
-            
+
             // 3个imageview一开始需要的图片分别对应图片数组的图片索引应该是imageview[0].index-->images.count - 1,imageview[1].index-->0,imageview[2].index-->1
-            
+
             NSInteger index = 0;
-            
+
             if (i == 0) {
                 index = imagesCount - 1;
-                
+
             } else if (i == 1) {
                 index = 0;
-                
+
             } else if (i == 2) {
                 index = 1;
             }
             imageView.tag = index;
-            
+
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewClicked:)];
             [imageView addGestureRecognizer:tap];
-            
+
             // 设置imageView上的image图片
             [self setImageView:imageView atIndex:index];
             // 将imageView加入数组中，方便随后取用
@@ -108,17 +108,17 @@
             [self.scrollView addSubview:imageView];
         }
     }
-    
+
     // 初始化pageControl,最后添加,这样它会显示在最前面,不会被遮挡
     self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.scrollView.frame) - 30, VIEW_WIDTH, 30)];
     self.pageControl.numberOfPages = imagesCount;
     self.pageControl.currentPage = 0;
     [self addSubview:self.pageControl];
-    
+
     // 当图片数量少于等于1张的时候隐藏pageControl,否则开启定时器
     if (imagesCount <= 1) {
         self.pageControl.hidden = YES;
-        
+
     } else {
         [self startTimer];
     }
@@ -143,9 +143,9 @@
 {
     UIImage *image = nil;
     if (index < _imageArray.count) {
-        image = [UIImage imageNamed:_imageArray[index]];
+        image = _imageArray[index];
     }
-    
+
     imageView.image = image;
 }
 
@@ -173,7 +173,7 @@
     if (!_scrollTimeInterval) {
         _scrollTimeInterval = 2;
     }
-    
+
     NSTimer *timer = [NSTimer timerWithTimeInterval:_scrollTimeInterval target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
     // 加入NSRunLoopCommonModes运行模式,这样可以让定时器无论是在默认还是拖拽模式下都可以正常滚动
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
@@ -202,7 +202,7 @@
 
 // 在调用setContentOffset方法的时候，会触发此代理方法
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    
+
     //在调用setContentOffset方法的时候，会触发此代理方法（避免在定时器控制偏移量的时候不刷新UI）
     [self updateImageViewsAndPageControl];
     // NSLog(@"滚动后的%f",_scrollView.contentOffset.x);
@@ -216,41 +216,41 @@
     if (self.scrollView.contentOffset.x > VIEW_WIDTH) {
         // 手指向左滑动
         flag = 1;
-        
+
     } else if (self.scrollView.contentOffset.x == 0) {
         // 原本偏移量是一个宽度,现在==0了,那么就是手指向右滑动了
         // 手指向右滑动
         flag = -1;
-        
+
     } else {
         // 除了向左向右之外就是没有移动,那么不需要任何操作，直接返回
         return;
     }
-    
+
     //    NSInteger index = 0;
     // 修改imageViews中的imageView的tag值，从而修改imageView上显示的image，pageControl的页码
     for (UIImageView *imageView in _imageViews) {
         /*
          （1）当屏幕中间那个imageview显示最后一张图片时，右边的ImageView,也即下一张图片应该是显示最开始的那一张图片(第0张)；
-         
+
          （2）当屏幕中间显示最开始的那一张图片(第0张)时，左边的ImageView,也即上一张图片应该是最后一张图片。
          */
         NSInteger index = imageView.tag + flag ;
-        
+
         if (index < 0) {
             index = self.pageControl.numberOfPages - 1;
         } else if (index >= self.pageControl.numberOfPages) {
             index = 0;
         }
-        
+
         imageView.tag = index;
         // 更新每一页上的image
         [self setImageView:imageView atIndex:index];
     }
-    
+
     // 更新pageControl显示的页码,也就是中间那个imageview的tag值
     self.pageControl.currentPage = [_imageViews[1] tag];
-    
+
     // 使用无动画的效果快速切换,也就是把scrollview的偏移量还设置成一个imageview的宽度
     // 这里是通过设置scrollview的偏移量让其来回滑动,时刻更换imageview的图片,每换一次,就立即让scrollview以无动画的方式再回到偏移量为一个imageview宽度的偏移量位置,即还是显示的中间那个imageview,以此给用户产生一种来回切换的错觉,实质一直是在显示中间那个imageview
     self.scrollView.contentOffset = CGPointMake(VIEW_WIDTH, 0);
@@ -265,3 +265,4 @@
 }
 
 @end
+
