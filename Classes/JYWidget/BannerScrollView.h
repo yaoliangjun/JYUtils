@@ -41,4 +41,11 @@ typedef void (^TapCallBack) (NSInteger index);
            scrollTimeInterval:(NSTimeInterval)scrollTimeInterval
                   tapCallBack:(TapCallBack)tapCallBack;
 
+/** UIPageControl小圆点默认颜色 */
+@property (nonatomic, strong) UIColor *pageIndicatorTintColor;
+
+/** UIPageControl小圆点选中颜色 */
+@property (nonatomic, strong) UIColor *currentPageIndicatorTintColor;
+
 @end
+

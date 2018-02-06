@@ -98,6 +98,7 @@ Pod::Spec.new do |s|
   s.subspec 'JYWidget' do |ww|
   ww.source_files = 'Classes/JYWidget/*.{h,m}'
   ww.public_header_files = 'Classes/JYWidget/*.h'
+  ww.dependency 'SDWebImage'
   end
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

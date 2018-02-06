@@ -7,10 +7,12 @@
 //
 
 #import "BannerScrollView.h"
+#import "UIImageView+WebCache.h"
 
 // UIScrollView的宽高
 #define VIEW_WIDTH  self.frame.size.width
 #define VIEW_HEIGHT self.frame.size.height
+#define kHexRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface BannerScrollView () <UIScrollViewDelegate>
 
@@ -155,7 +157,7 @@
         if (index < _urlArray.count) {
             imageUrl = _urlArray[index];
         }
-        [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"home_banner"]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
     }
 }
 
@@ -286,10 +288,22 @@
     if (!_pageControl) {
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.scrollView.frame) - 30, VIEW_WIDTH, 30)];
         _pageControl.currentPage = 0;
-        _pageControl.pageIndicatorTintColor = kGreyTextColor;
-        _pageControl.currentPageIndicatorTintColor = kDeepGoldColor;
+        _pageControl.pageIndicatorTintColor = kHexRGB(0x555555);
+        _pageControl.currentPageIndicatorTintColor = kHexRGB(0xFAD780);
     }
     return _pageControl;
+}
+
+- (void)setPageIndicatorTintColor:(UIColor *)pageIndicatorTintColor
+{
+    _pageIndicatorTintColor = pageIndicatorTintColor;
+    self.pageControl.pageIndicatorTintColor = pageIndicatorTintColor;
+}
+
+- (void)setCurrentPageIndicatorTintColor:(UIColor *)currentPageIndicatorTintColor
+{
+    _currentPageIndicatorTintColor = currentPageIndicatorTintColor;
+    self.pageControl.currentPageIndicatorTintColor = currentPageIndicatorTintColor;
 }
 
 - (void)dealloc {
@@ -300,3 +314,4 @@
 }
 
 @end
+
