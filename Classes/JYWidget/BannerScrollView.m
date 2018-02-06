@@ -18,13 +18,15 @@
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSTimeInterval scrollTimeInterval;   // 图片滚动的时间间隔
-@property (nonatomic, strong) NSArray *imageArray;                // 存放UIImage对象的数组
+@property (nonatomic, strong) NSArray *imageArray;                 // 存放UIImage对象的数组
+@property (nonatomic, strong) NSArray *urlArray;                   // 存放图片url的数组
 @property (nonatomic, strong) NSMutableArray *imageViews;          // 存放3个UIImageView的数组
 
 @end
 
 @implementation BannerScrollView
 
+/** 图片数组初始化 */
 - (instancetype)initWithFrame:(CGRect)frame
                    imageArray:(NSArray *)imageArray
            scrollTimeInterval:(NSTimeInterval)scrollTimeInterval
@@ -42,23 +44,32 @@
     return self;
 }
 
+/** 图片url数组初始化 */
+- (instancetype)initWithFrame:(CGRect)frame
+                     urlArray:(NSArray *)urlArray
+           scrollTimeInterval:(NSTimeInterval)scrollTimeInterval
+                  tapCallBack:(TapCallBack)tapCallBack
+{
+    if (self = [super initWithFrame:frame]) {
+        self.bounds = frame;
+        _urlArray = urlArray;
+        _scrollTimeInterval = scrollTimeInterval;
+        _tapCallBack = tapCallBack;
+
+        [self setupSubViews];
+    }
+
+    return self;
+}
+
 #pragma mark - 初始化scrollview/分页控件/imageview
 - (void)setupSubViews
 {
     // 初始化UIScrollView
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    self.scrollView.contentSize = CGSizeMake(VIEW_WIDTH * 3, VIEW_HEIGHT);
-    self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.showsVerticalScrollIndicator = NO;
-    self.scrollView.pagingEnabled = YES;
-    self.scrollView.bounces = NO;
-    // 设置scrollview一开始的偏移量为一个宽度,因为里面有3个UIImageView,所以scrollview默认显示的就是(0,1,2)里面的第一个imageview
-    self.scrollView.contentOffset = CGPointMake(VIEW_WIDTH, 0);
-    self.scrollView.delegate = self;
     [self addSubview:self.scrollView];
 
     // 初始化imageview
-    NSInteger imagesCount = _imageArray.count;
+    NSInteger imagesCount = [_imageArray count] ? [_imageArray count] : [_urlArray count];
     _imageViews = [NSMutableArray array];
 
     //创建三个imageView作为循环复用的载体，图片将循环加载在这三个imageView上面
@@ -72,7 +83,7 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewClicked:)];
         [imageView addGestureRecognizer:tap];
 
-        [self setImageView:imageView atIndex:index];
+        [self showImageView:imageView atIndex:index];
         [self addSubview:imageView];
 
     } else {
@@ -80,13 +91,8 @@
             UIImageView *imageView = [[UIImageView alloc] init];
             imageView.frame = CGRectMake(VIEW_WIDTH * i, 0, VIEW_WIDTH, VIEW_HEIGHT);
             imageView.userInteractionEnabled = YES;
-            // (self.dataArray.count - 1 + i) % self.dataArray.count也可以达到让一开始3个imageview分别显示最后一张<-->第一张<-->第二张图片,但是让大家理解起来会有一定难度,所以采用下面最简单的方法直接设置
-            // imageView.tag = (self.dataArray.count - 1 + i) % self.dataArray.count;
-
-            // 3个imageview一开始需要的图片分别对应图片数组的图片索引应该是imageview[0].index-->images.count - 1,imageview[1].index-->0,imageview[2].index-->1
 
             NSInteger index = 0;
-
             if (i == 0) {
                 index = imagesCount - 1;
 
@@ -102,7 +108,8 @@
             [imageView addGestureRecognizer:tap];
 
             // 设置imageView上的image图片
-            [self setImageView:imageView atIndex:index];
+            [self showImageView:imageView atIndex:index];
+
             // 将imageView加入数组中，方便随后取用
             [_imageViews addObject:imageView];
             [self.scrollView addSubview:imageView];
@@ -110,10 +117,8 @@
     }
 
     // 初始化pageControl,最后添加,这样它会显示在最前面,不会被遮挡
-    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.scrollView.frame) - 30, VIEW_WIDTH, 30)];
-    self.pageControl.numberOfPages = imagesCount;
-    self.pageControl.currentPage = 0;
     [self addSubview:self.pageControl];
+    self.pageControl.numberOfPages = imagesCount;
 
     // 当图片数量少于等于1张的时候隐藏pageControl,否则开启定时器
     if (imagesCount <= 1) {
@@ -133,20 +138,25 @@
     }
 }
 
-/*
- 这里给imageview设置图片有2个选择,第一可以使用这个方法,传递一个需要设置的imageview以及对应的index
- 好处:一眼就可以让大家明白这个方法内部的实现功能,易与阅读和理解
- 相对于下面那个方法的坏处:其实我们完全可以不传递index这个参数,我们完全可以把index赋值给imageview的tag,这样我们只用传递一个imageview过来,就可以既拿到imageview,又可以通过imageview的tag拿到index
- 总结:2个方法都可以,看大家喜欢哪一种,哪一种顺手好理解就使用哪一种
- */
-- (void)setImageView:(UIImageView *)imageView atIndex:(NSInteger)index
+- (void)showImageView:(UIImageView *)imageView atIndex:(NSInteger)index
 {
-    UIImage *image = nil;
-    if (index < _imageArray.count) {
-        image = _imageArray[index];
-    }
+    NSUInteger imageCount = [_imageArray count];
+    if (imageCount) {
+        // 图片UIImage
+        UIImage *image = nil;
+        if (index < _imageArray.count) {
+            image = _imageArray[index];
+        }
+        imageView.image = image;
 
-    imageView.image = image;
+    } else {
+        // 图片的url
+        NSString *imageUrl = nil;
+        if (index < _urlArray.count) {
+            imageUrl = _urlArray[index];
+        }
+        [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"home_banner"]];
+    }
 }
 
 // 定时器调用的方法
@@ -245,7 +255,7 @@
 
         imageView.tag = index;
         // 更新每一页上的image
-        [self setImageView:imageView atIndex:index];
+        [self showImageView:imageView atIndex:index];
     }
 
     // 更新pageControl显示的页码,也就是中间那个imageview的tag值
@@ -256,7 +266,32 @@
     self.scrollView.contentOffset = CGPointMake(VIEW_WIDTH, 0);
 }
 
-// 控制器销毁的时候移除定时器
+- (UIScrollView *)scrollView
+{
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        _scrollView.contentSize = CGSizeMake(VIEW_WIDTH * 3, VIEW_HEIGHT);
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.pagingEnabled = YES;
+        _scrollView.bounces = NO;
+        _scrollView.contentOffset = CGPointMake(VIEW_WIDTH, 0);
+        _scrollView.delegate = self;
+    }
+    return _scrollView;
+}
+
+- (UIPageControl *)pageControl
+{
+    if (!_pageControl) {
+        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.scrollView.frame) - 30, VIEW_WIDTH, 30)];
+        _pageControl.currentPage = 0;
+        _pageControl.pageIndicatorTintColor = kGreyTextColor;
+        _pageControl.currentPageIndicatorTintColor = kDeepGoldColor;
+    }
+    return _pageControl;
+}
+
 - (void)dealloc {
     if (_timer) {
         [_timer invalidate];
@@ -265,4 +300,3 @@
 }
 
 @end
-

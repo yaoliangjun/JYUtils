@@ -19,7 +19,7 @@ typedef void (^TapCallBack) (NSInteger index);
  *  创建轮播器的构造方法
  *  @param frame                轮播器的frame
  *  @param scrollTimeInterval   轮播器图片的切换时间
- *  @param imageArray           轮播器图片的数据源
+ *  @param imageArray           轮播器图片UIImage
  *  @param tapCallBack          点击轮播器imageview回调的block
  *  @return 返回轮播图控件
  */
@@ -28,5 +28,17 @@ typedef void (^TapCallBack) (NSInteger index);
            scrollTimeInterval:(NSTimeInterval)scrollTimeInterval
                   tapCallBack:(TapCallBack)tapCallBack;
 
-@end
+/**
+ *  创建轮播器的构造方法
+ *  @param frame                轮播器的frame
+ *  @param scrollTimeInterval   轮播器图片的切换时间
+ *  @param urlArray             轮播器图片的URL
+ *  @param tapCallBack          点击轮播器imageview回调的block
+ *  @return 返回轮播图控件
+ */
+- (instancetype)initWithFrame:(CGRect)frame
+                     urlArray:(NSArray *)urlArray
+           scrollTimeInterval:(NSTimeInterval)scrollTimeInterval
+                  tapCallBack:(TapCallBack)tapCallBack;
 
+@end
