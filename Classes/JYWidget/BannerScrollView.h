@@ -47,5 +47,8 @@ typedef void (^TapCallBack) (NSInteger index);
 /** UIPageControl小圆点选中颜色 */
 @property (nonatomic, strong) UIColor *currentPageIndicatorTintColor;
 
+/** 占位图片名称 */
+@property (nonatomic, copy) NSString *placeholderImageName;
+
 @end
 

@@ -60,6 +60,17 @@
 }
 
 /**
+ 创建一个只有背景图片的按钮
+ */
++ (UIButton *)buttonWithBackgroundImageName:(NSString *)backgroundImageName highlightedBackgroundImageName:(NSString *)highlightedBackgroundImageName target:(id)target selector:(SEL)selector
+{
+    UIButton *imageBtn = [[self alloc] initWithFrame:CGRectZero];
+    [imageBtn setBackgroundImage:[UIImage imageNamed:backgroundImageName] forState:UIControlStateNormal];
+    [imageBtn setBackgroundImage:[UIImage imageNamed:highlightedBackgroundImageName] forState:UIControlStateHighlighted];
+    return imageBtn;
+}
+
+/**
  创建一个有图片和背景图片的按钮
  */
 + (UIButton *)buttonWithImageName:(NSString *)imageName highlightedImageName:(NSString *)highlightedImageName backgroundImageName:(NSString *)backgroundImageName highlightedBackgroundImageName:(NSString *)highlightedBackgroundImageName target:(id)target selector:(SEL)selector
@@ -111,3 +122,4 @@
 }
 
 @end
+

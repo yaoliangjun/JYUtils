@@ -13,17 +13,8 @@
 /** 创建一个UIBarButtonItem: 返回箭头 */
 + (UIBarButtonItem *)arrowButtonItemWithImageName:(NSString *)imageName target:(id)target selector:(SEL)selector
 {
-    UIButton *button = [[UIButton alloc] init];
-    button.frame = CGRectMake(0, 0, 40, 40);
-
-    if (imageName.length) {
-        UIImageView *arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
-        arrowImageView.frame = CGRectMake(0, 10, 11, 20);
-        [button addSubview:arrowImageView];
-    }
-    [button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
-
-    return [[UIBarButtonItem alloc] initWithCustomView:button];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName] style:UIBarButtonItemStyleDone  target:target action:selector];
+    return item;
 }
 
 /** 创建一个UIBarButtonItem: 图片 */

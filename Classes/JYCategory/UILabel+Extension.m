@@ -26,6 +26,14 @@
     return label;
 }
 
+/** 创建一个UILabel(有文字、颜色、字体、行数) */
++ (UILabel *)labelWithText:(NSString *)text textColor:(UIColor *) textColor font:(UIFont *)font numberOfLines:(NSInteger)numberOfLines
+{
+    UILabel *label = [self labelWithFrame:CGRectZero text:text textColor:textColor font:font];
+    label.numberOfLines = numberOfLines;
+    return label;
+}
+
 /** 创建一个UILabel(有文字、对齐方式、颜色、字体) */
 + (UILabel *)labelWithText:(NSString *)text textAlignment:(NSTextAlignment)textAlignment textColor:(UIColor *) textColor font:(UIFont *)font
 {

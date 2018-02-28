@@ -157,7 +157,7 @@
         if (index < _urlArray.count) {
             imageUrl = _urlArray[index];
         }
-        [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:self.placeholderImageName]];
     }
 }
 
@@ -306,6 +306,14 @@
     self.pageControl.currentPageIndicatorTintColor = currentPageIndicatorTintColor;
 }
 
+- (NSString *)placeholderImageName
+{
+    if (!_placeholderImageName) {
+        _placeholderImageName = @"";
+    }
+    return _placeholderImageName;
+}
+
 - (void)dealloc {
     if (_timer) {
         [_timer invalidate];
@@ -314,3 +322,4 @@
 }
 
 @end
+
