@@ -144,12 +144,12 @@
 {
     NSUInteger imageCount = [_imageArray count];
     if (imageCount) {
-        // 图片UIImage
-        UIImage *image = nil;
+        // 图片名字
+        NSString *imageName = nil;
         if (index < _imageArray.count) {
-            image = _imageArray[index];
+            imageName = _imageArray[index];
         }
-        imageView.image = image;
+        imageView.image = [UIImage imageNamed:imageName];
 
     } else {
         // 图片的url
