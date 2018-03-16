@@ -13,11 +13,18 @@
 /** 创建一个UIBarButtonItem: 返回箭头 */
 + (UIBarButtonItem *)arrowButtonItemWithImageName:(NSString *)imageName target:(id)target selector:(SEL)selector
 {
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName] style:UIBarButtonItemStyleDone  target:target action:selector];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName] style:UIBarButtonItemStylePlain  target:target action:selector];
     return item;
 }
 
-/** 创建一个UIBarButtonItem: 图片 */
+/** 创建一个UIBarButtonItem: 图片(使用系统的按钮) */
++ (UIBarButtonItem *)barButtonItemWithImageName:(NSString *)imageName target:(id)target selector:(SEL)selector
+{
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain  target:target action:selector];
+    return item;
+}
+
+/** 创建一个UIBarButtonItem: 图片(使用自定义的按钮) */
 + (UIBarButtonItem *)barButtonItemWithImageName:(NSString *)imageName highlightedImageName:(NSString *)highlightedImageName target:(id)target selector:(SEL)selector
 {
     UIButton *button = [[UIButton alloc] init];
