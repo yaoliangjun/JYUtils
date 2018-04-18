@@ -1,23 +1,22 @@
 //
-//  MBProgressHUD+Extension.h
+//  ToastUtils.h
 //  JYUtils
 //
-//  Created by Jerry Yao on 2018/1/5.
-//  Copyright © 2017年 Jerry Yao. All rights reserved.
+//  Created by Jerry Yao on 2018/4/18.
+//  Copyright © 2018年 Jerry Yao. All rights reserved.
 //
 
-#import "MBProgressHUD.h"
+#import <Foundation/Foundation.h>
+
+@class MBProgressHUD;
 
 // HUD显示时长
-typedef NS_ENUM(NSInteger, HUDDuration) {
-    HUDDurationShort = 1,
-    HUDDurationLong = 2
+typedef NS_ENUM(NSInteger, JYDuration) {
+    JYDurationShort = 1,
+    JYDurationLong = 2
 };
 
-@interface MBProgressHUD (Extension)
-
-/** 获取一个默认的HUD */
-+ (MBProgressHUD *)defaultHUD;
+@interface ToastUtils : NSObject
 
 #pragma mark - 显示然后消失
 /** 默认的HUD，2秒后消失 */
@@ -28,21 +27,21 @@ typedef NS_ENUM(NSInteger, HUDDuration) {
  @param status 显示的文字
  @param completionHandle 回调
  */
-+ (void)showWithStatus:(NSString *)status completionHandle:(void(^)())completionHandle;
++ (void)showWithStatus:(NSString *)status completionHandle:(void(^)(void))completionHandle;
 
 /**
  HUD消失后再做一些事情:显示1秒
  @param status 显示的文字
  @param completionHandle 回调
  */
-+ (void)showShortWithStatus:(NSString *)status completionHandle:(void(^)())completionHandle;
++ (void)showShortWithStatus:(NSString *)status completionHandle:(void(^)(void))completionHandle;
 
 /**
  HUD消失后再做一些事情:显示2秒
  @param status 显示的文字
  @param completionHandle 回调
  */
-+ (void)showLongWithStatus:(NSString *)status completionHandle:(void(^)())completionHandle;
++ (void)showLongWithStatus:(NSString *)status completionHandle:(void(^)(void))completionHandle;
 
 /**
  HUD消失后再做一些事情
@@ -50,7 +49,7 @@ typedef NS_ENUM(NSInteger, HUDDuration) {
  @param duration 显示多久,单位是秒
  @param completionHandle 回调
  */
-+ (void)showWithStatus:(NSString *)status duration:(float)duration completionHandle:(void(^)())completionHandle;
++ (void)showWithStatus:(NSString *)status duration:(float)duration completionHandle:(void(^)(void))completionHandle;
 
 /**
  显示一个HUD
@@ -60,7 +59,7 @@ typedef NS_ENUM(NSInteger, HUDDuration) {
 + (void)showWithStatus:(NSString *)status duration:(float)duration;
 
 /** 显示一个图片HUD */
-+ (void)showStatus:(NSString *)status imageName:(NSString *)imageName;
++ (void)showWithStatus:(NSString *)status imageName:(NSString *)imageName;
 
 #pragma mark - 持续显示
 /** 显示菊花HUD */
@@ -76,4 +75,3 @@ typedef NS_ENUM(NSInteger, HUDDuration) {
 + (void)dismiss;
 
 @end
-
