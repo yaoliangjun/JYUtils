@@ -12,16 +12,24 @@
 @implementation UIButton (Extension)
 
 /**
+ 创建一个只有点击事件的按钮
+ */
++ (UIButton *)buttonWithTarget:(id)target selector:(SEL)selector {
+    UIButton *btn = [[self alloc] initWithFrame:CGRectZero];
+    [btn addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
+    return btn;
+}
+
+/**
  创建一个通用的文字按钮
  */
 + (UIButton *)buttonWithTitle:(NSString *)title titleColor:(UIColor *)titleColor highlightedTitleColor:(UIColor *)highlightedTitleColor font:(UIFont *)font target:(id)target selector:(SEL)selector
 {
-    UIButton *btn = [[self alloc] initWithFrame:CGRectZero];
+    UIButton *btn = [self buttonWithTarget:target selector:selector];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:titleColor forState:UIControlStateNormal];
     [btn setTitleColor:highlightedTitleColor forState:UIControlStateHighlighted];
     btn.titleLabel.font = font;
-    [btn addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
     return btn;
 }
 
@@ -92,7 +100,7 @@
 }
 
 /**
- 创建一个有边框、圆角和背景图片的文字按钮
+ 创建一个有边框、圆角和背景图片名字的文字按钮
  */
 + (UIButton *)buttonWithTitle:(NSString *)title titleColor:(UIColor *)titleColor highlightedTitleColor:(UIColor *)highlightedTitleColor font:(UIFont *)font backgroundImageName:(NSString *)backgroundImageName highlightedBackgroundImageName:(NSString *)highlightedBackgroundImageName borderColor:(UIColor *)borderColor borderWidth:(float)borderWidth cornerRadius:(float)cornerRadius target:(id)target selector:(SEL)selector
 {
@@ -100,6 +108,23 @@
     btn.layer.borderWidth = borderWidth;
     btn.layer.cornerRadius = cornerRadius;
     btn.clipsToBounds = YES;
+    if (borderColor != nil) {
+        btn.layer.borderColor = borderColor.CGColor;
+    }
+    return btn;
+}
+
+/**
+ 创建一个有边框、圆角和背景图片的文字按钮
+ */
++ (UIButton *)buttonWithTitle:(NSString *)title titleColor:(UIColor *)titleColor highlightedTitleColor:(UIColor *)highlightedTitleColor font:(UIFont *)font backgroundImage:(UIImage *)backgroundImage highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage borderColor:(UIColor *)borderColor borderWidth:(float)borderWidth cornerRadius:(float)cornerRadius target:(id)target selector:(SEL)selector
+{
+    UIButton *btn = [self buttonWithTitle:title titleColor:titleColor highlightedTitleColor:highlightedTitleColor font:font target:target selector:selector];
+    [btn setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+    [btn setBackgroundImage:highlightedBackgroundImage forState:UIControlStateHighlighted];
+    btn.layer.borderWidth = borderWidth;
+    btn.layer.cornerRadius = cornerRadius;
+    btn.layer.masksToBounds = YES;
     if (borderColor != nil) {
         btn.layer.borderColor = borderColor.CGColor;
     }

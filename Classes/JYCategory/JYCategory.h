@@ -1,13 +1,13 @@
 //
-//  Category.h
+//  JYCategory.h
 //  JYUtils
 //
 //  Created by yaoliangjun on 2017/11/11.
 //  Copyright © 2017年 Jerry Yao. All rights reserved.
 //  分类头文件
 
-#ifndef Category_h
-#define Category_h
+#ifndef JYCategory_h
+#define JYCategory_h
 
 #import "NSData+Extension.h"
 #import "NSDate+Extension.h"
@@ -24,4 +24,4 @@
 #import "UIBarButtonItem+Extension.h"
 #import "NSMutableArray+Extension.h"
 
-#endif /* Category_h */
+#endif /* JYCategory_h */
