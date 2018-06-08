@@ -83,7 +83,7 @@
  */
 + (UIButton *)buttonWithImageName:(NSString *)imageName highlightedImageName:(NSString *)highlightedImageName backgroundImageName:(NSString *)backgroundImageName highlightedBackgroundImageName:(NSString *)highlightedBackgroundImageName target:(id)target selector:(SEL)selector
 {
-    UIButton *imageBtn = [self buttonWithImageName:imageName highlightedImageName:highlightedImageName target:self selector:selector];
+    UIButton *imageBtn = [self buttonWithImageName:imageName highlightedImageName:highlightedImageName target:target selector:selector];
     [imageBtn setBackgroundImage:[UIImage imageNamed:backgroundImageName] forState:UIControlStateNormal];
     [imageBtn setBackgroundImage:[UIImage imageNamed:highlightedBackgroundImageName] forState:UIControlStateHighlighted];
     return imageBtn;
@@ -94,9 +94,21 @@
  */
 + (UIButton *)buttonWithImageName:(NSString *)imageName highlightedImageName:(NSString *)highlightedImageName backgroundColor:(UIColor *)backgroundColor target:(id)target selector:(SEL)selector
 {
-    UIButton *imageBtn = [self buttonWithImageName:imageName highlightedImageName:highlightedImageName target:self selector:selector];
+    UIButton *imageBtn = [self buttonWithImageName:imageName highlightedImageName:highlightedImageName target:target selector:selector];
     [imageBtn setBackgroundColor:backgroundColor];
     return imageBtn;
+}
+
+/**
+ 创建一个有图片和背景颜色的文字按钮
+ */
++ (UIButton *)buttonWithTitle:(NSString *)title titleColor:(UIColor *)titleColor font:(UIFont *)font imageName:(NSString *)imageName highlightedImageName:(NSString *)highlightedImageName backgroundColor:(UIColor *)backgroundColor target:(id)target selector:(SEL)selector
+{
+    UIButton *btn = [UIButton buttonWithImageName:imageName highlightedImageName:highlightedImageName backgroundColor:backgroundColor target:target selector:selector];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setTitleColor:titleColor forState:UIControlStateNormal];
+    btn.titleLabel.font = font;
+    return btn;
 }
 
 /**
