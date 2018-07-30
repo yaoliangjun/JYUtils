@@ -158,5 +158,17 @@
     return btn;
 }
 
+/**
+ 创建一个有边框、圆角、图片和背景颜色的文字按钮
+ */
++ (UIButton *)buttonWithTitle:(NSString *)title titleColor:(UIColor *)titleColor highlightedTitleColor:(UIColor *)highlightedTitleColor font:(UIFont *)font imageName:(NSString *)imageName highlightedImageName:(NSString *)highlightedImageName backgroundColor:(UIColor *)backgroundColor highlightedBackgroundColor:(UIColor *)highlightedBackgroundColor borderColor:(UIColor *)borderColor borderWidth:(float)borderWidth cornerRadius:(float)cornerRadius target:(id)target selector:(SEL)selector
+{
+    UIButton *btn = [UIButton buttonWithTitle:title titleColor:titleColor highlightedTitleColor:highlightedTitleColor font:font backgroundColor:backgroundColor highlightedBackgroundColor:highlightedBackgroundColor borderColor:borderColor borderWidth:borderWidth cornerRadius:cornerRadius target:target selector:selector];
+    [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:highlightedImageName] forState:UIControlStateHighlighted];
+    
+    return btn;
+}
+
 @end
 

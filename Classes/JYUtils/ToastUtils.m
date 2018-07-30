@@ -104,7 +104,7 @@ static CGFloat kHUDCornerRadius = 5;
     hud.bezelView.alpha = kHUDAlpha;
     hud.bezelView.layer.cornerRadius = kHUDCornerRadius;
     hud.contentColor = kHUDTextColor;
-
+    hud.graceTime = 0.5;
     return hud;
 }
 

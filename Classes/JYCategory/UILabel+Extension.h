@@ -40,4 +40,7 @@
 /** 获取UILabel的高度 */
 - (CGFloat)labelHeight;
 
+/* 设置段落间距和行间距 */
+- (void)setParagraphSpacing:(CGFloat)paragraphSpacing lineSpacing:(CGFloat)lineSpacing;
+
 @end

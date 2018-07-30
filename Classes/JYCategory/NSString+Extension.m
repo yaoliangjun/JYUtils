@@ -35,7 +35,7 @@
  */
 - (BOOL)isValidPhoneNumber
 {
-    NSPredicate *postcodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^[1][3,4,5,7,8][0-9]{9}$"];
+    NSPredicate *postcodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^[1][3,4,5,6,7,8,9][0-9]{9}$"];
     return [postcodeTest evaluateWithObject:self];
 }
 
@@ -275,12 +275,6 @@
 
     NSString *str = [NSString stringWithFormat:@"%%.%df", count];
     return [NSString stringWithFormat:str, [self doubleValue]];
-}
-
-/** 获取字符串默认保留小数点 */
-- (NSString *)defaultDecimalPoint
-{
-    return [self decimalPoint:5];
 }
 
 /** 保留N为小数，不四舍五入 */

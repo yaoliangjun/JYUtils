@@ -170,5 +170,22 @@
     return textField;
 }
 
+/** 创建一个UITextField(有leftView和rightView) */
++ (UITextField *)textFieldWithText:(NSString *)text textColor:(UIColor *)textColor placeHolder:(NSString *)placeHolder placeHolderColor:(UIColor *)placeHolderColor font:(UIFont *)font leftView:(UIView *)leftView  rightView:(UIView *)rightView
+{
+    UITextField *textField = [self textFieldWithText:text textColor:textColor placeHolder:placeHolder placeHolderColor:placeHolderColor font:font];
+    if (leftView != nil) {
+        textField.leftView = leftView;
+        textField.leftViewMode = UITextFieldViewModeAlways;
+    }
+    
+    if (rightView != nil) {
+        textField.rightView = rightView;
+        textField.rightViewMode = UITextFieldViewModeAlways;
+    }
+    
+    return textField;
+}
+
 @end
 
