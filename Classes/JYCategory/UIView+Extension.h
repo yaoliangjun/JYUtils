@@ -26,7 +26,7 @@
 - (void)removeAllSubviews;
 
 /** 创建一条分割线(有颜色) */
-+ (UIView *)lineWithColor:(UIColor *)color;
++ (UIView *)viewWithColor:(UIColor *)color;
 
 /** 创建一条分割线(有Frame、颜色) */
 + (UIView *)lineWithFrame:(CGRect)frame color:(UIColor *)color;

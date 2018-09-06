@@ -17,19 +17,18 @@
 #define kHUDTextColor [UIColor whiteColor]
 #define kHUDHexRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0 green:((float)((rgbValue & 0xFF00) >> 8)) / 255.0 blue:((float)(rgbValue & 0xFF)) / 255.0 alpha:1.0]
 
-static NSTimeInterval kHUDDelayInterval = JYDurationLong;
+static NSTimeInterval kHUDDelayInterval = 1.5;
 static CGFloat kHUDAlpha = 1;
 static CGFloat kHUDCornerRadius = 5;
 
 @implementation ToastUtils
 
 #pragma mark - 显示然后消失
-/** 默认的HUD, 2秒后消失 */
+/** 默认的HUD, 1.5秒后消失 */
 + (void)showWithStatus:(NSString *)status {
     [self showWithStatus:status duration:kHUDDelayInterval];
 }
 
-/** HUD消失后再做一些事情 */
 + (void)showWithStatus:(NSString *)status completionHandle:(void (^)(void))completionHandle {
     [self showWithStatus:status duration:kHUDDelayInterval];
 
@@ -38,6 +37,10 @@ static CGFloat kHUDCornerRadius = 5;
             completionHandle();
         });
     }
+}
+
++ (void)showShortWithStatus:(NSString *)status {
+    [self showShortWithStatus:status completionHandle:nil];
 }
 
 + (void)showShortWithStatus:(NSString *)status completionHandle:(void (^)(void))completionHandle {

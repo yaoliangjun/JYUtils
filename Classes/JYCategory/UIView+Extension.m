@@ -175,7 +175,7 @@
 }
 
 /** 创建一条分割线(有颜色) */
-+ (UIView *)lineWithColor:(UIColor *)color
++ (UIView *)viewWithColor:(UIColor *)color
 {
     UIView *lineView = [self lineWithFrame:CGRectZero color:color];
     return lineView;

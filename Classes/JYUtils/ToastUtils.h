@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, JYDuration) {
 @interface ToastUtils : NSObject
 
 #pragma mark - 显示然后消失
-/** 默认的HUD，2秒后消失 */
+/** 默认的HUD，1.5秒后消失 */
 + (void)showWithStatus:(NSString *)status;
 
 /**
@@ -28,6 +28,12 @@ typedef NS_ENUM(NSInteger, JYDuration) {
  @param completionHandle 回调
  */
 + (void)showWithStatus:(NSString *)status completionHandle:(void(^)(void))completionHandle;
+
+/**
+ HUD消失后再做一些事情:显示1秒
+ @param status 显示的文字
+ */
++ (void)showShortWithStatus:(NSString *)status;
 
 /**
  HUD消失后再做一些事情:显示1秒
