@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "JYUtils"
-  s.version      = "0.2.2"
+  s.version      = "0.2.3"
   s.summary      = "JYUtils是一个包含了常用的分类和控件的快速开发工具包。"
 
   # This description is used to generate tags and improve search results.
