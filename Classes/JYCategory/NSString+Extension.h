@@ -12,7 +12,7 @@
 @interface NSString (Extension)
 
 /** 判断字符串是否为空 */
-- (BOOL)isEmpty;
++ (BOOL)isEmpty:(NSString *)str;
 
 /** 校验手机号是否合法 */
 - (BOOL)isValidPhoneNumber;

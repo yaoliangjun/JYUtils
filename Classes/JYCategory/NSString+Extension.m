@@ -13,21 +13,21 @@
 
 /**
  *  判断字符串是否为空
- *  @return  YES:为nil或者空，NO:有内容
+ *  @return  YES:为空，NO:不为空
  */
-- (BOOL)isEmpty
-{
-    if (self &&
-        self != nil &&
-        self != (id)[NSNull null] &&
-        ![self isEqualToString:@""] &&
-        ![self isEqualToString:@"<null>"] &&
-        ![self isEqualToString:@"(null)"] &&
-        ![self isEqualToString:@"null"]) {
-        return NO;
++ (BOOL)isEmpty:(NSString *)str {
+    if (!str ||
+        !str.length ||
+        ![str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length ||
+        [str isKindOfClass:[NSNull class]] ||
+        [str isEqualToString:@"<null>"] ||
+        [str isEqualToString:@"(null)"] ||
+        [str isEqualToString:@"null"] ||
+        [str isEqualToString:@"nil"]) {
+        return YES;
     }
-
-    return YES;
+    
+    return NO;
 }
 
 /**
