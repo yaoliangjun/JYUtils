@@ -1,147 +1,51 @@
 #
-#  Be sure to run `pod spec lint JYUtils.podspec' to ensure this is a
-#  valid spec and to remove all comments including this before submitting the spec.
+# Be sure to run `pod lib lint JYUtils.podspec' to ensure this is a
+# valid spec before submitting.
 #
-#  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
-#  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
+# Any lines starting with a # are optional, but their use is encouraged
+# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
 #
 
 Pod::Spec.new do |s|
+  s.name             = 'JYUtils'
+  s.version          = '0.3.0'
+  s.summary          = 'JYUtils是一个包含了常用的工具类、分类和控件的快速开发工具包。'
 
-  # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  These will help people to find your library, and whilst it
-  #  can feel like a chore to fill in it's definitely to your advantage. The
-  #  summary should be tweet-length, and the description more in depth.
-  #
+# This description is used to generate tags and improve search results.
+#   * Think: What does it do? Why did you write it? What is the focus?
+#   * Try to keep it short, snappy and to the point.
+#   * Write the description between the DESC delimiters below.
+#   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.name         = "JYUtils"
-  s.version      = "0.2.3"
-  s.summary      = "JYUtils是一个包含了常用的分类和控件的快速开发工具包。"
+  s.description      = <<-DESC
+                        JYUtils是一个包含了常用的工具类、分类和控件的快速开发工具包，可加快APP开发速度。
+                       DESC
 
-  # This description is used to generate tags and improve search results.
-  #   * Think: What does it do? Why did you write it? What is the focus?
-  #   * Try to keep it short, snappy and to the point.
-  #   * Write the description between the DESC delimiters below.
-  #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "JYUtils是一个包含了控件封装，工具类等的工具包，，可加快APP开发速度。"
+  s.homepage         = 'https://github.com/yaoliangjun/JYUtils'
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.author           = { 'yaoliangjun' => '913736093@qq.com' }
+  s.source           = { :git => 'https://github.com/yaoliangjun/JYUtils.git', :tag => s.version.to_s }
 
-  s.homepage     = "https://github.com/yaoliangjun/JYUtils"
-
-  # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Licensing your code is important. See http://choosealicense.com for more info.
-  #  CocoaPods will detect a license file if there is a named LICENSE*
-  #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
-  #
-
-  s.license      = "MIT"
-  #s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
-
-
-  # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Specify the authors of the library, with email addresses. Email addresses
-  #  of the authors are extracted from the SCM log. E.g. $ git log. CocoaPods also
-  #  accepts just a name if you'd rather not provide an email address.
-  #
-  #  Specify a social_media_url where others can refer to, for example a twitter
-  #  profile URL.
-  #
-
-  s.author             = { "yaoliangjun" => "913736093@qq.com" }
-
-  # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  If this Pod runs only on iOS or OS X, then specify the platform and
-  #  the deployment target. You can optionally include the target after the platform.
-  #
-
-  #s.platform     = :ios
   s.platform     = :ios, "8.0"
 
-  #  When using multiple platforms
-  # s.ios.deployment_target = "5.0"
-  # s.osx.deployment_target = "10.7"
-  # s.watchos.deployment_target = "2.0"
-  # s.tvos.deployment_target = "9.0"
+  s.public_header_files = 'JYUtils/**/JYUtils.h'
+  s.source_files = 'JYUtils/**/JYUtils.h'
 
-
-  # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Specify the location from where the source should be retrieved.
-  #  Supports git, hg, bzr, svn and HTTP.
-  #
-
-  s.source       = { :git => "https://github.com/yaoliangjun/JYUtils.git", :tag => "#{s.version}" }
-  s.requires_arc = true
-
-  # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  CocoaPods is smart about how it includes source code. For source files
-  #  giving a folder will include any swift, h, m, mm, c & cpp files.
-  #  For header files it will include any header in the folder.
-  #  Not including the public_header_files will make all headers public.
-  #
-
-  s.public_header_files = 'Classes/JYUtils.h'
-  s.source_files = 'Classes/JYUtils.h'
-
-  #s.default_subspec     = 'JYCategory'
-
-  s.subspec 'JYCategory' do |cc|
-  cc.source_files = 'Classes/JYCategory/*.{h,m}'
-  cc.public_header_files = 'Classes/JYCategory/*.h'
+  s.subspec 'JYCategory' do |category|
+      category.source_files = 'JYUtils/**/JYCategory/*.{h,m}'
+      category.public_header_files = 'JYUtils/**/JYCategory/*.h'
   end
 
-  s.subspec 'JYUtils' do |uu|
-  uu.source_files = 'Classes/JYUtils/*.{h,m}'
-  uu.public_header_files = 'Classes/JYUtils/*.h'
-  uu.dependency 'MBProgressHUD'
+  s.subspec 'JYUtilities' do |utils|
+      utils.source_files = 'JYUtils/**/JYUtilities/*.{h,m}'
+      utils.public_header_files = 'JYUtils/**/JYUtilities/*.h'
+      utils.dependency 'MBProgressHUD'
   end
 
-  s.subspec 'JYWidget' do |ww|
-  ww.source_files = 'Classes/JYWidget/*.{h,m}'
-  ww.public_header_files = 'Classes/JYWidget/*.h'
-  ww.dependency 'SDWebImage'
+  s.subspec 'JYWidget' do |widget|
+      widget.source_files = 'JYUtils/**/JYWidget/*.{h,m}'
+      widget.public_header_files = 'JYUtils/**/JYWidget/*.h'
+      widget.dependency 'SDWebImage'
   end
-
-  # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  A list of resources included with the Pod. These are copied into the
-  #  target bundle with a build phase script. Anything else will be cleaned.
-  #  You can preserve files from being cleaned, please don't preserve
-  #  non-essential files like tests, examples and documentation.
-  #
-
-  # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
-
-  # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
-
-
-  # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Link your library with frameworks, or libraries. Libraries do not include
-  #  the lib prefix of their name.
-  #
-
-  # s.framework  = "SomeFramework"
-  # s.frameworks = "SomeFramework", "AnotherFramework"
-
-  # s.library   = "iconv"
-  # s.libraries = "iconv", "xml2"
-
-
-  # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  If your library depends on compiler flags you can set them in the xcconfig hash
-  #  where they will only apply to your library. If you depend on other Podspecs
-  #  you can include multiple dependencies to ensure it works.
-
-  # s.requires_arc = true
-
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
 
 end
