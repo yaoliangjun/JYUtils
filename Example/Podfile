@@ -7,7 +7,7 @@ target 'JYUtils_Example' do
 
   target 'JYUtils_Tests' do
     inherit! :search_paths
-
     
   end
+  
 end
