@@ -55,6 +55,17 @@
 /**
  创建一个只有图片的按钮
  */
++ (UIButton *)buttonWithImage:(UIImage *)image target:(id)target selector:(SEL)selector {
+    UIButton *imageBtn = [[self alloc] initWithFrame:CGRectZero];
+    [imageBtn setImage:image forState:UIControlStateNormal];
+    [imageBtn setImage:image forState:UIControlStateHighlighted];
+    [imageBtn addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
+    return imageBtn;
+}
+
+/**
+ 创建一个只有图片的按钮
+ */
 + (UIButton *)buttonWithImageName:(NSString *)imageName highlightedImageName:(NSString *)highlightedImageName target:(id)target selector:(SEL)selector {
     UIButton *imageBtn = [[self alloc] initWithFrame:CGRectZero];
     [imageBtn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];

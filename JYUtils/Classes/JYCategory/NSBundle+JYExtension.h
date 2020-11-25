@@ -25,5 +25,8 @@
 /** 获取APP BundleID */
 + (NSString*)appBundleID;
 
+/** 获取指定的Bundle */
++ (NSBundle *)bundleWithName:(NSString *)bundleName;
+
 @end
 

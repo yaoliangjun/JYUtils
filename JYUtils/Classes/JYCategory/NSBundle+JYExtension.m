@@ -56,4 +56,14 @@ static const char _bundle = 0;
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
 }
 
+/** 获取指定的Bundle */
++ (NSBundle *)bundleWithName:(NSString *)bundleName {
+    NSURL *url = [[NSBundle mainBundle] URLForResource:bundleName withExtension:@"bundle"];
+    if (url) {
+        return [NSBundle bundleWithURL:url];
+    }
+    
+    return nil;
+}
+
 @end

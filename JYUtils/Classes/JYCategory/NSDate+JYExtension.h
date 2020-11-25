@@ -150,5 +150,8 @@
 /** 获取当前时间的时间戳(毫秒) */
 + (NSString *)millisecondWithCurrentDate;
 
+/** 获取指定日期天数 */
++ (NSInteger)getDaysWithYear:(NSInteger)year month:(NSInteger)month;
+
 @end
 

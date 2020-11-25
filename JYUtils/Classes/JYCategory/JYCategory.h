@@ -24,5 +24,9 @@
 #import "UITextField+JYExtension.h"
 #import "UIView+JYExtension.h"
 #import "UIViewController+JYExtension.h"
+#import "CAGradientLayer+JYExtension.h"
+#import "UIColor+JYExtension.h"
+#import "UIDevice+JYExtension.h"
+#import "UIFont+JYExtension.h"
 
 #endif /* JYCategory_h */

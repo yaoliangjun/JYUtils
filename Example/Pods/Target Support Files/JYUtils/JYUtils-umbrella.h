@@ -11,6 +11,7 @@
 #endif
 
 #import "JYUtils.h"
+#import "CAGradientLayer+JYExtension.h"
 #import "JYCategory.h"
 #import "NSBundle+JYExtension.h"
 #import "NSData+JYExtension.h"
@@ -21,6 +22,9 @@
 #import "UIAlertController+JYExtension.h"
 #import "UIBarButtonItem+JYExtension.h"
 #import "UIButton+JYExtension.h"
+#import "UIColor+JYExtension.h"
+#import "UIDevice+JYExtension.h"
+#import "UIFont+JYExtension.h"
 #import "UIImage+JYExtension.h"
 #import "UIImageView+JYExtension.h"
 #import "UILabel+JYExtension.h"

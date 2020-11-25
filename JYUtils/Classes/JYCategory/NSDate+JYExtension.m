@@ -290,5 +290,30 @@
     return second;
 }
 
+/** 获取指定日期天数 */
++ (NSInteger)getDaysWithYear:(NSInteger)year month:(NSInteger)month {
+    NSInteger days = 0;
+    if (1 == month
+        || 3 == month
+        || 5 == month
+        || 7 == month
+        || 8 == month
+        || 10 == month
+        || 12 == month) {
+        days = 31;
+    } else if (4 == month || 6 == month || 9 == month || 11 == month) {
+        days = 30;
+    } else {// 2月份，闰年29天、平年28天
+        if (((0 == year % 4) && (0 != year % 100))
+            || (0 == (year % 400))) {
+            days = 29;
+        } else {
+            days = 28;
+        }
+    }
+    
+    return days;
+}
+
 @end
 

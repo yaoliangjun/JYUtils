@@ -30,6 +30,10 @@
  创建一个有背景颜色的文字按钮
  */
 + (UIButton *)buttonWithTitle:(NSString *)title titleColor:(UIColor *)titleColor highlightedTitleColor:(UIColor *)highlightedTitleColor font:(UIFont *)font backgroundColor:(UIColor *)backgroundColor highlightedBackgroundColor:(UIColor *)highlightedBackgroundColor target:(id)target selector:(SEL)selector;
+/**
+ 创建一个只有图片的按钮
+ */
++ (UIButton *)buttonWithImage:(UIImage *)image target:(id)target selector:(SEL)selector;
 
 /**
  创建一个只有图片的按钮

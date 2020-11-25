@@ -267,5 +267,68 @@
     return [NSString stringWithFormat:@"%@", roundedOunces];
 }
 
+/** 是否是纯数字 */
+- (BOOL)isNumText {
+    NSString * regex        = @"(/^[0-9]*$/)";
+    NSPredicate * pred      = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    BOOL isMatch            = [pred evaluateWithObject:self];
+    if (isMatch) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+// Base64 Start
++ (NSString *)base64EncodeWithStr:(NSString *)str {
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    if (!data) {
+        return nil;
+    }
+    
+    return base64_encode_data(data);
+}
+
++ (NSString *)base64DecodeWithStr:(NSString *)str {
+    NSData *data = base64_decode(str);
+    if (!data) {
+        return nil;
+    }
+    
+    return [[NSString alloc] initWithData:data  encoding:NSUTF8StringEncoding];
+}
+// Base64 End
+
+static NSString *base64_encode_data(NSData *data) {
+    data = [data base64EncodedDataWithOptions:0];
+    NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return ret;
+}
+
+static NSData *base64_decode(NSString *str) {
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:str options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    return data;
+}
+
++ (NSString *)randomStringNumWithLength:(NSInteger)length {
+    NSString *string = [[NSString alloc] init];
+    for (int i = 0; i < length; i++) {
+        int number = arc4random() % 36;
+        if (number < 10) {
+            int figure = arc4random() % 10;
+            NSString *tempString = [NSString stringWithFormat:@"%d", figure];
+            string = [string stringByAppendingString:tempString];
+            
+        } else {
+            int figure = (arc4random() % 26) + 97;
+            char character = figure;
+            NSString *tempString = [[NSString stringWithFormat:@"%c", character] uppercaseString];
+            string = [string stringByAppendingString:tempString];
+        }
+    }
+    
+    return string;
+}
+
 @end
 

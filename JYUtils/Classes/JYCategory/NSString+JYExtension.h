@@ -74,5 +74,15 @@
 /** 保留N为小数，不四舍五入 */
 + (NSString *)doubleValue:(double)doubleValue afterPoint:(int)position;
 
+/** 是否是纯数字 */
+- (BOOL)isNumText;
+
++ (NSString *)base64EncodeWithStr:(NSString *)str;
+
++ (NSString *)base64DecodeWithStr:(NSString *)str;
+
+/** 获取指定长度的字母和数字随机字符串 */
++ (NSString *)randomStringNumWithLength:(NSInteger)length;
+
 @end
 
