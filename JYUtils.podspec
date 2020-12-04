@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JYUtils'
-  s.version          = '0.3.1'
+  s.version          = '0.3.2'
   s.summary          = 'JYUtils是一个包含了常用的工具类、分类和控件的快速开发工具包。'
 
 # This description is used to generate tags and improve search results.
@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
   s.subspec 'JYUtilities' do |utils|
       utils.source_files = 'JYUtils/**/JYUtilities/*.{h,m}'
       utils.public_header_files = 'JYUtils/**/JYUtilities/*.h'
-      utils.dependency 'MBProgressHUD'
+      utils.dependency 'MBProgressHUD', '1.1.0'
   end
 
   s.subspec 'JYWidget' do |widget|
