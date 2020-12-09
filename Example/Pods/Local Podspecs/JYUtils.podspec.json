@@ -1,6 +1,6 @@
 {
   "name": "JYUtils",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "summary": "JYUtils是一个包含了常用的工具类、分类和控件的快速开发工具包。",
   "description": "JYUtils是一个包含了常用的工具类、分类和控件的快速开发工具包，可加快APP开发速度。",
   "homepage": "https://github.com/yaoliangjun/JYUtils",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/yaoliangjun/JYUtils.git",
-    "tag": "0.3.0"
+    "tag": "0.3.2"
   },
   "platforms": {
     "ios": "8.0"
@@ -32,7 +32,7 @@
       "public_header_files": "JYUtils/**/JYUtilities/*.h",
       "dependencies": {
         "MBProgressHUD": [
-
+          "1.1.0"
         ]
       }
     },
