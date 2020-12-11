@@ -18,7 +18,11 @@
 + (UIViewController *)topViewControllerWithRootViewController:(UIViewController *)rootViewController {
     if ([rootViewController isKindOfClass:[UITabBarController class]]) {
         UITabBarController *tabBarController = (UITabBarController *)rootViewController;
-        return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
+        UIViewController *selectedVC = tabBarController.selectedViewController;
+        if (!selectedVC) {
+            return tabBarController;
+        }
+        return [self topViewControllerWithRootViewController:selectedVC];
 
     } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *navigationController = (UINavigationController *)rootViewController;
